@@ -21,9 +21,13 @@ import image4 from "../images/Image4.png";
 import swimingPool from "../images/swimingPool.png";
 import gym from "../images/gym.png";
 import cafe from "../images/cafe.png";
+import news from "../images/new.png";
+import supermarket from "../images/supermarket.png";
+import webinar from "../images/webinar.png";
 import Quality from "../components/Quality";
 import FacilitiesCard from "../components/FacilitiesCard";
 import { Link } from "react-router-dom";
+import BlogCard from "../components/BlogCard";
 
 const itemData = [
   { img: image1 },
@@ -49,6 +53,23 @@ const facilitiesData = [
     title: "Kafe va restoran",
     infomation:
       "It is a long established fact that a reader will be distracted by the readable content of a page",
+  },
+];
+const blogData = [
+  {
+    img: news,
+    title: "Yangi imkoniyatlar: katta golf maydoni",
+    infomation: "25 May 2023",
+  },
+  {
+    img: supermarket,
+    title: "Mehmonxona yaqinida ajoyib supermarketlar",
+    infomation: "12 May 2023",
+  },
+  {
+    img: webinar,
+    title: "Vebinarlar uchun maxsus zallar",
+    infomation: "15 Apr 2023",
   },
 ];
 
@@ -239,6 +260,18 @@ const Home = () => {
             <Stack>
               <FacilitiesCard data={facilitiesData} />
             </Stack>
+          </Box>
+          <Box mt={"50px"}>
+            <Stack direction={"row"} justifyContent={"space-between"}>
+              <Typography variant="h4">Blog</Typography>
+              <Button variant="contained" sx={{ background: "black" }}>
+                <Link to={"/blog"}>Ko'proq</Link>
+              </Button>
+            </Stack>
+            <Divider sx={{ marginTop: "20px" }} />
+            <Box mt={5}>
+              <BlogCard data={blogData} />
+            </Box>
           </Box>
         </Box>
       </Container>
