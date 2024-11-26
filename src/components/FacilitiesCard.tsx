@@ -1,28 +1,30 @@
 import { Stack, Box, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
+interface Data {
+  img: string;
+  title: string;
+  infomation: string;
+}
 interface CardProps {
-  data: {
-    img: string;
-    title: string;
-    infomation: string;
-  }[];
+  data: Data[];
+  links: string;
 }
 
-const FacilitiesCard: React.FC<CardProps> = ({ data }) => {
+const FacilitiesCard: React.FC<CardProps> = ({ data, links }) => {
   return (
     <Box>
-      <Stack direction={"column"}>
+      <Stack direction={"column"} flexWrap={"wrap"}>
         <Stack gap={5}>
           {data.map((iteam, idx) => (
             <Link
-              to="/offers"
+              to={links}
               key={idx}
               style={{ textDecoration: "none", color: "inherit" }}
             >
               <Stack
                 direction={"row"}
-                gap={"100px"}
+                gap={"80px"}
                 sx={{
                   cursor: "pointer",
                   transition: "transform 0.3s, box-shadow 0.3s",
@@ -37,14 +39,14 @@ const FacilitiesCard: React.FC<CardProps> = ({ data }) => {
                   src={iteam.img}
                   alt={iteam.title}
                   style={{
-                    width: "500px",
-                    height: "250px",
+                    width: "420px",
+                    height: "100%",
                     borderRadius: "8px",
                   }}
                 />
-                <Stack gap={3} mt={5}>
+                <Stack gap={3} alignSelf={"center"}>
                   <Typography variant="h4">{iteam.title}</Typography>
-                  <Typography>{iteam.infomation}</Typography>
+                  <Typography variant="h6">{iteam.infomation}</Typography>
                 </Stack>
               </Stack>
             </Link>

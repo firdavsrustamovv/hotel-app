@@ -15,7 +15,6 @@ const pages = [
   { label: "Xonalar", path: "/rooms" },
   { label: "Qulayliklar", path: "/facilities" },
   { label: "Takliflarimiz", path: "/offers" },
-  { label: "To'y va Marosimlar", path: "/wedding" },
   { label: "Biz haqimizda", path: "/about" },
   { label: "Blog", path: "/blog" },
 ];

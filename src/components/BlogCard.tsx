@@ -1,20 +1,24 @@
 import { Stack, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
-interface CardProps {
-  data: {
-    img: string;
-    title: string;
-    infomation: string;
-  }[];
+interface Data {
+  img: string;
+  title: string;
+  infomation: string;
 }
 
-const BlogCard: React.FC<CardProps> = ({ data }) => {
+interface CardProps {
+  data: Data[];
+  link: string;
+  fontSize: string;
+}
+
+const BlogCard: React.FC<CardProps> = ({ data, link, fontSize }) => {
   return (
     <Stack direction="row" flexWrap="wrap" gap={2}>
       {data.map((item, idx) => (
         <Link
-          to="/blog"
+          to={link}
           key={idx}
           style={{ textDecoration: "none", color: "inherit", display: "block" }}
         >
@@ -41,7 +45,7 @@ const BlogCard: React.FC<CardProps> = ({ data }) => {
               }}
             />
             <Stack gap={1} mt={2}>
-              <Typography fontSize={"15px"}>{item.title}</Typography>
+              <Typography fontSize={fontSize}>{item.title}</Typography>
               <Typography>{item.infomation}</Typography>
             </Stack>
           </Stack>

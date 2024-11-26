@@ -252,13 +252,13 @@ const Home = () => {
             </Typography>
 
             <Button sx={{ backgroundColor: "black" }} variant="contained">
-              <Link to={"/offers"}>Ko'proq</Link>
+              <Link to={"/facilities"}>Ko'proq</Link>
             </Button>
           </Stack>
           <Divider sx={{ marginTop: "50px", color: "black" }} />
           <Box mt={"50px"}>
             <Stack>
-              <FacilitiesCard data={facilitiesData} />
+              <FacilitiesCard data={facilitiesData} links="/facilities" />
             </Stack>
           </Box>
           <Box mt={"50px"}>
@@ -269,8 +269,8 @@ const Home = () => {
               </Button>
             </Stack>
             <Divider sx={{ marginTop: "20px" }} />
-            <Box mt={5}>
-              <BlogCard data={blogData} />
+            <Box mt={5} height={"400px"}>
+              <BlogCard data={blogData} link="/blog" fontSize="15px" />
             </Box>
           </Box>
         </Box>
