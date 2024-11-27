@@ -251,9 +251,12 @@ const Home = () => {
               To'liq va eng sifatli imkoniyatlardan rohatlaning
             </Typography>
 
-            <Button sx={{ backgroundColor: "black" }} variant="contained">
-              <Link to={"/facilities"}>Ko'proq</Link>
-            </Button>
+            <Link to={"/facilities"}>
+              <Button variant="contained" sx={{ background: "black" }}>
+                {" "}
+                Ko'proq
+              </Button>
+            </Link>
           </Stack>
           <Divider sx={{ marginTop: "50px", color: "black" }} />
           <Box mt={"50px"}>
@@ -264,9 +267,13 @@ const Home = () => {
           <Box mt={"50px"}>
             <Stack direction={"row"} justifyContent={"space-between"}>
               <Typography variant="h4">Blog</Typography>
-              <Button variant="contained" sx={{ background: "black" }}>
-                <Link to={"/blog"}>Ko'proq</Link>
-              </Button>
+
+              <Link to={"/blog"}>
+                <Button variant="contained" sx={{ background: "black" }}>
+                  {" "}
+                  Ko'proq
+                </Button>
+              </Link>
             </Stack>
             <Divider sx={{ marginTop: "20px" }} />
             <Box mt={5} height={"400px"}>
