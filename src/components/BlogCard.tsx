@@ -1,7 +1,8 @@
 import { Stack, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
-interface Data {
+export interface Data {
+  id?: number;
   img: string;
   title: string;
   infomation: string;
@@ -16,10 +17,10 @@ interface CardProps {
 const BlogCard: React.FC<CardProps> = ({ data, link, fontSize }) => {
   return (
     <Stack direction="row" flexWrap="wrap" gap={2}>
-      {data.map((item, idx) => (
+      {data.map((item) => (
         <Link
-          to={link}
-          key={idx}
+          to={`${link}/${item.id}`}
+          key={item.id}
           style={{ textDecoration: "none", color: "inherit", display: "block" }}
         >
           <Stack

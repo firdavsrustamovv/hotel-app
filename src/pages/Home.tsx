@@ -27,7 +27,7 @@ import webinar from "../images/webinar.png";
 import Quality from "../components/Quality";
 import FacilitiesCard from "../components/FacilitiesCard";
 import { Link } from "react-router-dom";
-import BlogCard from "../components/BlogCard";
+import BlogCard, { Data } from "../components/BlogCard";
 
 const itemData = [
   { img: image1 },

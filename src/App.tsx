@@ -7,6 +7,7 @@ import About from "./pages/About";
 import "./App.css";
 import DetailRooms from "./pages/DetailRooms";
 import Blog from "./pages/Blog";
+import ContactUs from "./pages/ContactUs";
 
 type Props = {};
 
@@ -23,6 +24,7 @@ const App = (props: Props) => {
         <Route path="/offers" element={<Offers />} />
         <Route path="/about" element={<About />} />
         <Route path="/blog" element={<Blog />} />
+        <Route path="/contact" element={<ContactUs />} />
       </Routes>
     </div>
   );

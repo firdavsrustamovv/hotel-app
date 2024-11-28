@@ -1,7 +1,7 @@
 import { Stack, Typography, Box, Container, Divider } from "@mui/material";
 import Header from "../components/Header";
 import roomBackground from "../images/room.png";
-import BlogCard from "../components/BlogCard";
+import BlogCard, { Data } from "../components/BlogCard";
 import executiveRoom from "../images/executiveRoom.png";
 import juniorRoom from "../images/juniorRoom.png";
 import grandRoom from "../images/grandRoom.png";
@@ -12,35 +12,41 @@ import premiumDeluxeRoom from "../images/premiumDeluxeRoom.png";
 
 type Props = {};
 
-const blogData = [
+export const blogData = [
   {
+    id: 1,
     img: executiveRoom,
     title: "Ota-onalar uchun",
     infomation: "50 m² 2 yotoqxona 1 hammom va balkon",
   },
   {
+    id: 2,
     img: juniorRoom,
     title: "Bollalar uchun",
     infomation: "50 m² 1 yotoqxona 1 hammom balkon",
   },
   {
+    id: 3,
     img: grandRoom,
     title: "Katta oila uchun",
     infomation: "80 m² 2 yotoqxona 1 hammom balkon",
   },
 ];
-const blogDataNewRooms = [
+export const blogDataNewRooms = [
   {
+    id: 4,
     img: executiveRoom2,
     title: "Lyuks xona",
     infomation: "50 m² 2 yotoqxona 1 hammom va balkon",
   },
   {
+    id: 5,
     img: premiumRoom,
     title: "Premium xona",
     infomation: "50 m² 1 yotoqxona 1 hammom balkon",
   },
   {
+    id: 6,
     img: premiumDeluxeRoom,
     title: "Premium Deluxe xona",
     infomation: "60 m² 1 yotoqxona 1 hammom balkon",
@@ -96,7 +102,7 @@ const Rooms = (props: Props) => {
             </Typography>
           </Stack>
           <Box mt="50px">
-            <BlogCard data={blogData} link={"/rooms/1"} fontSize="25px" />
+            <BlogCard data={blogData} link={`/rooms`} fontSize="25px" />
           </Box>
         </Box>
       </Container>
@@ -155,7 +161,7 @@ const Rooms = (props: Props) => {
         }}
       >
         <Container>
-          <BlogCard data={blogDataNewRooms} link={"/rooms/2"} fontSize="20px" />
+          <BlogCard data={blogDataNewRooms} link={`/rooms`} fontSize="20px" />
         </Container>
       </Box>
     </Box>

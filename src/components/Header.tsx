@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -92,17 +92,19 @@ const Header = () => {
           </Box>
 
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <Button
-              sx={{
-                color: "white",
-                border: "1px solid white",
-                "&:hover": {
-                  backgroundColor: "rgba(255, 255, 255, 0.2)",
-                },
-              }}
-            >
-              Aloqa
-            </Button>
+            <Link to={"/contact"}>
+              <Button
+                sx={{
+                  color: "white",
+                  border: "1px solid white",
+                  "&:hover": {
+                    backgroundColor: "rgba(255, 255, 255, 0.2)",
+                  },
+                }}
+              >
+                Aloqa
+              </Button>
+            </Link>
           </Box>
         </Stack>
       </Container>
