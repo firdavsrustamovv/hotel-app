@@ -42,7 +42,9 @@ const Header = () => {
           gap={2}
         >
           <Box sx={{ display: "flex", alignItems: "center", gap: 2, p: 1 }}>
-            <img src={Logo} alt="Logo" width="60px" height="40px" />
+            <Link to={"/"}>
+              <img src={Logo} alt="Logo" width="60px" height="40px" />
+            </Link>
           </Box>
 
           <Box sx={{ display: { xs: "none", md: "flex" }, gap: 2 }}>

@@ -76,7 +76,7 @@ const Offers = (props: Props) => {
       </Box>
       <Container>
         <Box mt={"100px"}>
-          <Stack height={"1500px"}>
+          <Stack height={"1400px"}>
             <FacilitiesCard data={offersData} links="" />
           </Stack>
         </Box>

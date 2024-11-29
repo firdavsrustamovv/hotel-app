@@ -8,6 +8,8 @@ import "./App.css";
 import DetailRooms from "./pages/DetailRooms";
 import Blog from "./pages/Blog";
 import ContactUs from "./pages/ContactUs";
+import Footer from "./components/Footer";
+import BookingRoom from "./pages/BookingRoom";
 
 type Props = {};
 
@@ -19,13 +21,19 @@ const App = (props: Props) => {
         <Route path="/rooms/*">
           <Route index element={<Rooms />} />
           <Route path=":id" element={<DetailRooms />} />
+          <Route path="booking/:id" element={<BookingRoom />} />
         </Route>
         <Route path="/facilities" element={<Facilities />} />
         <Route path="/offers" element={<Offers />} />
         <Route path="/about" element={<About />} />
-        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/*">
+          <Route index element={<Blog />} />
+          <Route path=":id" element={<Blog />} />
+        </Route>
+        {/* <Route path="/blog" element={<Blog />} /> */}
         <Route path="/contact" element={<ContactUs />} />
       </Routes>
+      <Footer />
     </div>
   );
 };

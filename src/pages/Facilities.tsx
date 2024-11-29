@@ -73,7 +73,7 @@ const Facilities = (props: Props) => {
             <Typography variant="h4">Bizning qulayliklarimiz</Typography>
             <Divider sx={{ marginTop: "40px", background: "black" }} />
           </Stack>
-          <Stack mt={"50px"} height={"900px"}>
+          <Stack mt={"50px"} height={"800px"}>
             <FacilitiesCard data={facilitiesData} links="" />
           </Stack>
         </Box>

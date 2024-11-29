@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { blogDataNewRooms, blogData } from "./Rooms";
 import {
   Typography,
@@ -12,14 +12,41 @@ import roomBackground from "../images/room.png";
 import detailRoom1 from "../images/detailRoom1.png";
 import detailRoom2 from "../images/detailRoom2.png";
 import Header from "../components/Header";
-
+import PhoneIcon from "@mui/icons-material/Phone";
+import BathtubIcon from "@mui/icons-material/Bathtub";
+import ShowerIcon from "@mui/icons-material/Shower";
+import WifiIcon from "@mui/icons-material/Wifi";
+import TvIcon from "@mui/icons-material/Tv";
+import CoffeeMakerIcon from "@mui/icons-material/CoffeeMaker";
+import BlogCard from "../components/BlogCard";
+import news from "../images/new.png";
+import supermarket from "../images/supermarket.png";
+import webinar from "../images/webinar.png";
 type Props = {};
+const blogDatas = [
+  {
+    img: news,
+    title: "Yangi imkoniyatlar: katta golf maydoni",
+    infomation: "25 May 2023",
+  },
+  {
+    img: supermarket,
+    title: "Mehmonxona yaqinida ajoyib supermarketlar",
+    infomation: "12 May 2023",
+  },
+  {
+    img: webinar,
+    title: "Vebinarlar uchun maxsus zallar",
+    infomation: "15 Apr 2023",
+  },
+];
 
 const DetailRooms = (props: Props) => {
   const { id } = useParams<{ id: string }>();
   const numericId = parseInt(id || "0");
   const allRooms = [...blogData, ...blogDataNewRooms];
   const room = allRooms.find((room) => room.id === numericId);
+  const navigate = useNavigate();
 
   if (!room) {
     return (
@@ -28,6 +55,15 @@ const DetailRooms = (props: Props) => {
       </Box>
     );
   }
+
+  const facilities = [
+    { icon: <PhoneIcon fontSize="large" />, label: "Telephone" },
+    { icon: <BathtubIcon fontSize="large" />, label: "Bathtub" },
+    { icon: <ShowerIcon fontSize="large" />, label: "Shower" },
+    { icon: <WifiIcon fontSize="large" />, label: "Fast Wifi" },
+    { icon: <TvIcon fontSize="large" />, label: "LCD Television" },
+    { icon: <CoffeeMakerIcon fontSize="large" />, label: "Coffee Maker" },
+  ];
 
   return (
     <Box>
@@ -74,7 +110,7 @@ const DetailRooms = (props: Props) => {
               key={index}
               sx={{
                 width: "32%",
-                height: "300px", // Set uniform height
+                height: "300px",
                 overflow: "hidden",
                 borderRadius: "8px",
                 position: "relative",
@@ -104,7 +140,7 @@ const DetailRooms = (props: Props) => {
                 style={{
                   width: "100%",
                   height: "100%",
-                  objectFit: "cover", // Ensures consistent image size
+                  objectFit: "cover",
                   transition: "filter 0.3s ease",
                 }}
               />
@@ -155,11 +191,78 @@ const DetailRooms = (props: Props) => {
                 </Typography>
               </Stack>
               <Stack mt={"200px"}>
-                <Button sx={{ background: "#C9A96A" }} variant="contained">
+                <Button
+                  onClick={() => navigate(`/rooms/booking/${room.id}`)}
+                  sx={{ background: "#C9A96A" }}
+                  variant="contained"
+                >
                   Booking
                 </Button>
               </Stack>
             </Stack>
+          </Stack>
+        </Box>
+        <Box mt={"100px"}>
+          <Box
+            sx={{
+              backgroundColor: "#121212",
+              padding: "20px",
+              textAlign: "center",
+            }}
+          >
+            <Typography variant="h5" color="#ffffff" gutterBottom>
+              Premium Deluxe Facilities
+            </Typography>
+            <Box
+              sx={{
+                backgroundColor: "#1f1f1f",
+                padding: "20px",
+                borderRadius: "8px",
+                marginTop: "20px",
+              }}
+            >
+              <Stack
+                direction="row"
+                spacing={3}
+                flexWrap="wrap"
+                justifyContent="center"
+                sx={{
+                  gap: "20px",
+                  "@media (max-width: 600px)": {
+                    flexDirection: "column",
+                    alignItems: "center",
+                  },
+                }}
+              >
+                {facilities.map((facility, index) => (
+                  <Stack
+                    key={index}
+                    alignItems="center"
+                    sx={{
+                      color: "#d4af37",
+                      "&:hover": {
+                        transform: "scale(1.1)",
+                        transition: "0.3s",
+                      },
+                      cursor: "pointer",
+                    }}
+                  >
+                    {facility.icon}
+                    <Typography variant="body1" color="#ffffff" mt={1}>
+                      {facility.label}
+                    </Typography>
+                  </Stack>
+                ))}
+              </Stack>
+            </Box>
+          </Box>
+        </Box>
+        <Box mt={"100px"}>
+          <Stack>
+            <Typography variant="h4">BLog</Typography>
+          </Stack>
+          <Stack mt={"30px"} height={"400px"}>
+            <BlogCard data={blogDatas} link={`/rooms`} fontSize="15px" />
           </Stack>
         </Box>
       </Container>

@@ -115,8 +115,8 @@ const Blog = (props: Props) => {
         </Box>
         <Box mt={"100px"} height={"700px"}>
           <Stack>
-            <BlogCard data={blogData} link="" fontSize="15px" />
-            <BlogCard data={blogData} link="" fontSize="15px" />
+            <BlogCard data={blogData} link="/blog" fontSize="15px" />
+            <BlogCard data={blogData} link="/blog" fontSize="15px" />
           </Stack>
         </Box>
       </Container>

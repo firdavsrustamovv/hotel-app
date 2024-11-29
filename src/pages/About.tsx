@@ -89,22 +89,64 @@ const About = (props: Props) => {
               </Typography>
             </Stack>
           </Box>
-          <Box mt={"50px"}>
+          <Box mt={"50px"} height={"650px"}>
             <Stack direction={"row"} gap={"10px"}>
-              <Stack>
-                <img src={aboutUsImg} alt="aboutUsImg" />
+              <Stack
+                sx={{
+                  "&:hover": {
+                    transform: "scale(1.05)",
+                    transition: "transform 0.3s ease",
+                  },
+                }}
+              >
+                <img
+                  src={aboutUsImg}
+                  alt="aboutUsImg"
+                  style={{
+                    width: "100%",
+                    borderRadius: "8px",
+                  }}
+                />
                 <Typography textAlign={"center"} fontSize={"20px"}>
                   Tawangmangu, Surakarta
                 </Typography>
               </Stack>
-              <Stack>
-                <img src={aboutUsImg2} alt="aboutUsImg" />
+              <Stack
+                sx={{
+                  "&:hover": {
+                    transform: "scale(1.05)",
+                    transition: "transform 0.3s ease",
+                  },
+                }}
+              >
+                <img
+                  src={aboutUsImg2}
+                  alt="aboutUsImg"
+                  style={{
+                    width: "100%",
+                    borderRadius: "8px",
+                  }}
+                />
                 <Typography textAlign={"center"} fontSize={"20px"}>
                   Batu, Malang
                 </Typography>
               </Stack>
-              <Stack>
-                <img src={aboutUsImg3} alt="aboutUsImg" />
+              <Stack
+                sx={{
+                  "&:hover": {
+                    transform: "scale(1.05)",
+                    transition: "transform 0.3s ease",
+                  },
+                }}
+              >
+                <img
+                  src={aboutUsImg3}
+                  alt="aboutUsImg"
+                  style={{
+                    width: "100%",
+                    borderRadius: "8px",
+                  }}
+                />
                 <Typography textAlign={"center"} fontSize={"20px"}>
                   Lembang, Bandung
                 </Typography>

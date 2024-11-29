@@ -26,7 +26,7 @@ import supermarket from "../images/supermarket.png";
 import webinar from "../images/webinar.png";
 import Quality from "../components/Quality";
 import FacilitiesCard from "../components/FacilitiesCard";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import BlogCard, { Data } from "../components/BlogCard";
 
 const itemData = [
@@ -80,6 +80,7 @@ interface IFormInput {
 
 const Home = () => {
   const { register, handleSubmit } = useForm<IFormInput>();
+  const navigate = useNavigate();
   const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data);
 
   return (
@@ -174,6 +175,7 @@ const Home = () => {
 
             <Button
               sx={{ backgroundColor: "black" }}
+              onClick={() => navigate("/rooms")}
               variant="contained"
               type="submit"
             >
