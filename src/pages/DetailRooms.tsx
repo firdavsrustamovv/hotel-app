@@ -19,25 +19,28 @@ import WifiIcon from "@mui/icons-material/Wifi";
 import TvIcon from "@mui/icons-material/Tv";
 import CoffeeMakerIcon from "@mui/icons-material/CoffeeMaker";
 import BlogCard from "../components/BlogCard";
-import news from "../images/new.png";
-import supermarket from "../images/supermarket.png";
-import webinar from "../images/webinar.png";
+import executiveRoom from "../images/executiveRoom.png";
+import juniorRoom from "../images/juniorRoom.png";
+import grandRoom from "../images/grandRoom.png";
 type Props = {};
 const blogDatas = [
   {
-    img: news,
-    title: "Yangi imkoniyatlar: katta golf maydoni",
-    infomation: "25 May 2023",
+    id: 1,
+    img: executiveRoom,
+    title: "Ota-onalar uchun",
+    infomation: "50 m² 2 yotoqxona 1 hammom va balkon",
   },
   {
-    img: supermarket,
-    title: "Mehmonxona yaqinida ajoyib supermarketlar",
-    infomation: "12 May 2023",
+    id: 2,
+    img: juniorRoom,
+    title: "Bollalar uchun",
+    infomation: "50 m² 1 yotoqxona 1 hammom balkon",
   },
   {
-    img: webinar,
-    title: "Vebinarlar uchun maxsus zallar",
-    infomation: "15 Apr 2023",
+    id: 3,
+    img: grandRoom,
+    title: "Katta oila uchun",
+    infomation: "80 m² 2 yotoqxona 1 hammom balkon",
   },
 ];
 
@@ -259,7 +262,7 @@ const DetailRooms = (props: Props) => {
         </Box>
         <Box mt={"100px"}>
           <Stack>
-            <Typography variant="h4">BLog</Typography>
+            <Typography variant="h4">Boshqa Xonalar</Typography>
           </Stack>
           <Stack mt={"30px"} height={"400px"}>
             <BlogCard data={blogDatas} link={`/rooms`} fontSize="15px" />
