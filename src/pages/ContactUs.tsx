@@ -81,7 +81,7 @@ const ContactUs = (props: Props) => {
             >
               <Box
                 component="form"
-                onSubmit={handleSubmit(onSubmit)} // Connect handleSubmit
+                onSubmit={handleSubmit(onSubmit)}
                 sx={{
                   backgroundColor: "#1E1E1E",
                   padding: "30px",
