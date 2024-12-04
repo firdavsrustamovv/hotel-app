@@ -12,19 +12,37 @@ const facilitiesData = [
     img: swimingPool,
     title: "Yopiq suzish havzasi",
     infomation:
-      "It is a long established fact that a reader will be distracted by the readable content of a page",
+      "Bizda yopiq suzish havzasi mavjud bo'lib  yilning 4 faslida ham ishlaydi",
   },
   {
     img: gym,
     title: "Sport zali mashg'ulot maydoni",
     infomation:
-      "It is a long established fact that a reader will be distracted by the readable content of a page",
+      "Bizda Sport zali mashg'ulot maydoni mavjud va u zamonaviy sport anjomlari bilan ta'minlangan",
   },
   {
     img: cafe,
     title: "Kafe va restoran",
     infomation:
-      "It is a long established fact that a reader will be distracted by the readable content of a page",
+      "Kafe va restoranlarimiz 24 soat ishlaydi va siz xohlagan ta'omingizni tanovul qilishingiz mumkin",
+  },
+  {
+    img: gym,
+    title: "Sport zali mashg'ulot maydoni",
+    infomation:
+      "Bizda Sport zali mashg'ulot maydoni mavjud va u zamonaviy sport anjomlari bilan ta'minlangan",
+  },
+  {
+    img: cafe,
+    title: "Kafe va restoran",
+    infomation:
+      "Kafe va restoranlarimiz 24 soat ishlaydi va siz xohlagan ta'omingizni tanovul qilishingiz mumkin",
+  },
+  {
+    img: swimingPool,
+    title: "Yopiq suzish havzasi",
+    infomation:
+      "Bizda yopiq suzish havzasi mavjud bo'lib  yilning 4 faslida ham ishlaydi",
   },
 ];
 
@@ -73,7 +91,7 @@ const Facilities = (props: Props) => {
             <Typography variant="h4">Bizning qulayliklarimiz</Typography>
             <Divider sx={{ marginTop: "40px", background: "black" }} />
           </Stack>
-          <Stack mt={"50px"} height={"800px"}>
+          <Stack mt={"50px"} height={"100%"}>
             <FacilitiesCard data={facilitiesData} links="" />
           </Stack>
         </Box>

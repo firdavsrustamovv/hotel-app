@@ -28,6 +28,8 @@ import Quality from "../components/Quality";
 import FacilitiesCard from "../components/FacilitiesCard";
 import { Link, useNavigate } from "react-router-dom";
 import BlogCard, { Data } from "../components/BlogCard";
+import { createClient, SupabaseClient } from "@supabase/supabase-js";
+import React, { useEffect, useState } from "react";
 
 const itemData = [
   { img: image1 },
@@ -40,19 +42,19 @@ const facilitiesData = [
     img: swimingPool,
     title: "Yopiq suzish havzasi",
     infomation:
-      "It is a long established fact that a reader will be distracted by the readable content of a page",
+      "Bizda yopiq suzish havzasi mavjud bo'lib  yilning 4 faslida ham ishlaydi",
   },
   {
     img: gym,
     title: "Sport zali mashg'ulot maydoni",
     infomation:
-      "It is a long established fact that a reader will be distracted by the readable content of a page",
+      "Bizda Sport zali mashg'ulot maydoni mavjud va u zamonaviy sport anjomlari bilan ta'minlangan",
   },
   {
     img: cafe,
     title: "Kafe va restoran",
     infomation:
-      "It is a long established fact that a reader will be distracted by the readable content of a page",
+      "Kafe va restoranlarimiz 24 soat ishlaydi va siz xohlagan ta'omingizni tanovul qilishingiz mumkin",
   },
 ];
 const blogData = [
@@ -77,11 +79,38 @@ interface IFormInput {
   type: string;
   rooms: string;
 }
-
+interface Hotel {
+  id: number;
+  name: string;
+  title: string;
+}
+const SUPABASE_URL = "https://rujhgbmpoqfnzqghhcxy.supabase.co";
+const SUPABASE_KEY = process.env.REACT_APP_SUPABASE_KEY as string;
+const supabase: SupabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
 const Home = () => {
   const { register, handleSubmit } = useForm<IFormInput>();
   const navigate = useNavigate();
   const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data);
+  const [hotels, setHotels] = useState<Hotel[]>([]);
+  const [error, setError] = useState<string | null>(null);
+  console.log(hotels);
+
+  const fetchData = async () => {
+    try {
+      const { data, error } = await supabase.from("hotel").select("*");
+
+      if (error) {
+        throw error;
+      }
+      setHotels(data || []);
+    } catch (err: any) {
+      console.error("Fetch error: ", err.message);
+      setError("Failed to fetch data");
+    }
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <Box>
@@ -278,7 +307,7 @@ const Home = () => {
               </Link>
             </Stack>
             <Divider sx={{ marginTop: "20px" }} />
-            <Box mt={5} height={"400px"}>
+            <Box mt={5} height={"auto"}>
               <BlogCard data={blogData} link="/blog" fontSize="15px" />
             </Box>
           </Box>

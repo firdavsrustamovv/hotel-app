@@ -60,12 +60,12 @@ const DetailRooms = (props: Props) => {
   }
 
   const facilities = [
-    { icon: <PhoneIcon fontSize="large" />, label: "Telephone" },
-    { icon: <BathtubIcon fontSize="large" />, label: "Bathtub" },
-    { icon: <ShowerIcon fontSize="large" />, label: "Shower" },
-    { icon: <WifiIcon fontSize="large" />, label: "Fast Wifi" },
-    { icon: <TvIcon fontSize="large" />, label: "LCD Television" },
-    { icon: <CoffeeMakerIcon fontSize="large" />, label: "Coffee Maker" },
+    { icon: <PhoneIcon fontSize="large" />, label: "Telefon" },
+    { icon: <BathtubIcon fontSize="large" />, label: "Hammom" },
+    { icon: <ShowerIcon fontSize="large" />, label: "Do'sh" },
+    { icon: <WifiIcon fontSize="large" />, label: "Tezkor Wifi" },
+    { icon: <TvIcon fontSize="large" />, label: "LCD Televizor" },
+    { icon: <CoffeeMakerIcon fontSize="large" />, label: "Coffee Apparat" },
   ];
 
   return (
@@ -161,23 +161,19 @@ const DetailRooms = (props: Props) => {
           <Stack direction={"row"} justifyContent={"space-between"}>
             <Stack direction={"column"} gap={"15px"}>
               <Typography fontWeight={"bold"} variant="h4">
-                Description
+                Ma'lumot
               </Typography>
-              <Typography fontSize={"20px"}>
-                Surround yourself with simple elegance in this 50,5 m2 <br />
-                beautifully appointed Deluxe Premium Room with some traditional{" "}
+              <Typography fontSize={"21px"}>
+                Ushbu 50,5 m2 maydonda o'zingizni oddiy nafislik bilan o'rab{" "}
                 <br />
-                touch, our 50,5 m2 is simply your perfect choice. This room also{" "}
+                oling bu sizning mukammal tanlovingiz. Bu xona ham oldida <br />
+                to'g'ridan-to'g'ri to'xtash joyi bilan qulaylik yaratadi <br />
+                yashashingizni yanada mukammal qiladi Qulay nafis va zamonaviy{" "}
                 <br />
-                provides convenience with direct parking access in front of the{" "}
+                dizayndagi xona atmosferasi sizni dam olishga undaydi Hammasi{" "}
                 <br />
-                room and terrace that make your stay more perfect. A comfortable{" "}
-                <br />
-                room atmosphere with an elegant and modern design makes you rest{" "}
-                <br />
-                more soundly. All are designed with clean, bright white shades{" "}
-                <br />
-                that add to the sensation of comfort.
+                toza, yorqin oq soyalar bilan yaratilgan bu qulaylik hissini
+                oshiradi.
               </Typography>
             </Stack>
             <Stack>
@@ -187,19 +183,19 @@ const DetailRooms = (props: Props) => {
                 justifyContent={"space-between"}
               >
                 <Typography fontWeight={"bold"} fontSize={"20px"}>
-                  Booking
+                  Bron qilish
                 </Typography>
-                <Typography color="#C9A96A" fontSize={"20px"}>
-                  $500/Night
+                <Typography color="#e8b34a" fontSize={"20px"}>
+                  $500/Kun
                 </Typography>
               </Stack>
-              <Stack mt={"200px"}>
+              <Stack mt={"170px"}>
                 <Button
                   onClick={() => navigate(`/rooms/booking/${room.id}`)}
-                  sx={{ background: "#C9A96A" }}
+                  sx={{ background: "#e8b34a" }}
                   variant="contained"
                 >
-                  Booking
+                  Bron qilish
                 </Button>
               </Stack>
             </Stack>
@@ -214,7 +210,7 @@ const DetailRooms = (props: Props) => {
             }}
           >
             <Typography variant="h5" color="#ffffff" gutterBottom>
-              Premium Deluxe Facilities
+              Premium Deluxe Imkoniyatlar
             </Typography>
             <Box
               sx={{
@@ -264,7 +260,7 @@ const DetailRooms = (props: Props) => {
           <Stack>
             <Typography variant="h4">Boshqa Xonalar</Typography>
           </Stack>
-          <Stack mt={"30px"} height={"400px"}>
+          <Stack mt={"30px"} height={"auto"}>
             <BlogCard data={blogDatas} link={`/rooms`} fontSize="15px" />
           </Stack>
         </Box>

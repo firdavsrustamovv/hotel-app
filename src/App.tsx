@@ -30,9 +30,9 @@ const App = (props: Props) => {
           <Route index element={<Blog />} />
           <Route path=":id" element={<Blog />} />
         </Route>
-        {/* <Route path="/blog" element={<Blog />} /> */}
         <Route path="/contact" element={<ContactUs />} />
       </Routes>
+      <div style={{ height: "100px" }}></div>
       <Footer />
     </div>
   );

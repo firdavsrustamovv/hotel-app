@@ -39,7 +39,7 @@ interface IFormInput {
   codeRefferal: string;
 }
 
-const steps = ["Personal data", "Booking info", "Summary"];
+const steps = ["Shaxsiy ma'lumotlar", "Bron qilish ma'lumotlari", "Xulosa"];
 const dataForBooking: IFormInput[] = [
   {
     checkIn: "",
@@ -136,7 +136,7 @@ const BookingRoom = (props: Props) => {
       <Container sx={{ height: "100%" }}>
         <Box mt={"100px"}>
           <Stack direction={"row"} justifyContent={"space-between"}>
-            <Typography variant="h4">Booking Room</Typography>
+            <Typography variant="h4">Bron qilinadigan xona</Typography>
             <Stack>
               <Box sx={{ width: "500px" }}>
                 <Stepper activeStep={step} alternativeLabel>
@@ -150,7 +150,7 @@ const BookingRoom = (props: Props) => {
             </Stack>
           </Stack>
         </Box>
-        <Box mt={"50px"} height={"500px"}>
+        <Box mt={"50px"} height={"auto"}>
           <Stack
             direction={"row"}
             flexWrap={"wrap"}
@@ -179,7 +179,7 @@ const BookingRoom = (props: Props) => {
                     sx={{ p: 4, mb: 4, borderRadius: 2, marginTop: "-40px" }}
                   >
                     <Typography variant="h5" mb={3}>
-                      Personal Information
+                      Shaxsiy ma'lumot
                     </Typography>
                     <Stack
                       direction={{ xs: "column", sm: "row" }}
@@ -188,9 +188,9 @@ const BookingRoom = (props: Props) => {
                     >
                       <TextField
                         fullWidth
-                        label="First Name"
+                        label="Ism"
                         {...register("name", { required: true })}
-                        placeholder="Your First Name"
+                        placeholder="Ismingiz"
                         variant="outlined"
                         InputProps={{
                           sx: {
@@ -200,9 +200,9 @@ const BookingRoom = (props: Props) => {
                       />
                       <TextField
                         fullWidth
-                        label="Last Name"
+                        label="Familya"
                         {...register("lastName", { required: true })}
-                        placeholder="Your Last Name"
+                        placeholder="Familyangiz"
                         variant="outlined"
                         InputProps={{
                           sx: {
@@ -216,7 +216,7 @@ const BookingRoom = (props: Props) => {
                       fullWidth
                       label="Email"
                       {...register("email", { required: true })}
-                      placeholder="Your Email"
+                      placeholder="Email"
                       type="email"
                       variant="outlined"
                       sx={{ mb: 2 }}
@@ -229,9 +229,9 @@ const BookingRoom = (props: Props) => {
 
                     <TextField
                       fullWidth
-                      label="Phone Number"
+                      label="Telefon Raqam"
                       {...register("phoneNumber", { required: true })}
-                      placeholder="Your Phone Number"
+                      placeholder="Telefon Raqamingiz"
                       type="tel"
                       variant="outlined"
                       InputProps={{
@@ -248,7 +248,7 @@ const BookingRoom = (props: Props) => {
                       size="large"
                       sx={{
                         mt: 3,
-                        bgcolor: "#C4A970",
+                        bgcolor: "#e8b34a",
                         "&:hover": {
                           bgcolor: "#b39861",
                         },
@@ -256,7 +256,7 @@ const BookingRoom = (props: Props) => {
                         py: 1.5,
                       }}
                     >
-                      Next
+                      Keyingisi
                     </Button>
                   </Card>
                 )}
@@ -272,7 +272,7 @@ const BookingRoom = (props: Props) => {
                     }}
                   >
                     <Typography variant="h5" mb={3}>
-                      Booking Information
+                      Bron qilish ma'lumotlari
                     </Typography>
                     <Stack
                       direction={{ xs: "column", sm: "row" }}
@@ -304,9 +304,9 @@ const BookingRoom = (props: Props) => {
                     </Stack>
                     <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
                       <FormControl fullWidth>
-                        <InputLabel>Total Room</InputLabel>
+                        <InputLabel>Umumiy xona</InputLabel>
                         <Select
-                          label="Total Room"
+                          label="Umumiy xona"
                           {...register("totalRoom", { required: true })}
                           sx={{ bgcolor: "#f9f9f9" }}
                         >
@@ -318,9 +318,9 @@ const BookingRoom = (props: Props) => {
                       </FormControl>
 
                       <FormControl fullWidth>
-                        <InputLabel>Total Guest</InputLabel>
+                        <InputLabel>Tashrif buyuruvchilar</InputLabel>
                         <Select
-                          label="Total Guest"
+                          label="Tashrif buyuruvchilar"
                           {...register("totalGuest", { required: true })}
                           sx={{ bgcolor: "#f9f9f9" }}
                         >
@@ -334,9 +334,9 @@ const BookingRoom = (props: Props) => {
 
                     <TextField
                       fullWidth
-                      label="Referral Code"
+                      label="Referral Kod"
                       {...(register("codeRefferal"), { required: false })}
-                      placeholder="Optional"
+                      placeholder="Agar bo'lsa"
                       variant="outlined"
                       sx={{ mt: 2 }}
                       InputProps={{
@@ -353,7 +353,7 @@ const BookingRoom = (props: Props) => {
                       size="large"
                       sx={{
                         mt: 3,
-                        bgcolor: "#C4A970",
+                        bgcolor: "#e8b34a",
                         "&:hover": {
                           bgcolor: "#b39861",
                         },
@@ -433,7 +433,7 @@ const BookingRoom = (props: Props) => {
                       size="large"
                       sx={{
                         mt: 3,
-                        bgcolor: "#C4A970",
+                        bgcolor: "#e8b34a",
                         "&:hover": {
                           bgcolor: "#b39861",
                         },
@@ -466,7 +466,7 @@ const BookingRoom = (props: Props) => {
                           size="large"
                           sx={{
                             mt: 3,
-                            bgcolor: "#C4A970",
+                            bgcolor: "#e8b34a",
                             "&:hover": {
                               bgcolor: "#b39861",
                             },
@@ -484,7 +484,6 @@ const BookingRoom = (props: Props) => {
             </Stack>
           </Stack>
         </Box>
-        <Box height={"100px"}></Box>
       </Container>
     </Box>
   );

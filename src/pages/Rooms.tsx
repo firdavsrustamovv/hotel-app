@@ -157,7 +157,7 @@ const Rooms = (props: Props) => {
         sx={{
           marginTop: "50px",
           padding: "20px",
-          height: "400px",
+          height: "auto",
         }}
       >
         <Container>

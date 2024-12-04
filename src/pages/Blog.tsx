@@ -26,6 +26,21 @@ const blogData = [
     title: "Vebinarlar uchun maxsus zallar",
     infomation: "15 Apr 2023",
   },
+  {
+    img: supermarket,
+    title: "Mehmonxona yaqinida ajoyib supermarketlar",
+    infomation: "12 May 2023",
+  },
+  {
+    img: webinar,
+    title: "Vebinarlar uchun maxsus zallar",
+    infomation: "15 Apr 2023",
+  },
+  {
+    img: bath,
+    title: "Bizda hammasi zamonaviy",
+    infomation: "25 May 2023",
+  },
 ];
 
 const Blog = (props: Props) => {
@@ -113,9 +128,8 @@ const Blog = (props: Props) => {
             </Stack>
           </Stack>
         </Box>
-        <Box mt={"100px"} height={"700px"}>
+        <Box mt={"100px"} height={"auto"}>
           <Stack>
-            <BlogCard data={blogData} link="/blog" fontSize="15px" />
             <BlogCard data={blogData} link="/blog" fontSize="15px" />
           </Stack>
         </Box>

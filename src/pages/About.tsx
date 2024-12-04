@@ -108,7 +108,7 @@ const About = (props: Props) => {
                   }}
                 />
                 <Typography textAlign={"center"} fontSize={"20px"}>
-                  Tawangmangu, Surakarta
+                  Toshkent,Chimyon
                 </Typography>
               </Stack>
               <Stack
@@ -128,7 +128,7 @@ const About = (props: Props) => {
                   }}
                 />
                 <Typography textAlign={"center"} fontSize={"20px"}>
-                  Batu, Malang
+                  Jizzax,Zomin
                 </Typography>
               </Stack>
               <Stack
@@ -148,7 +148,7 @@ const About = (props: Props) => {
                   }}
                 />
                 <Typography textAlign={"center"} fontSize={"20px"}>
-                  Lembang, Bandung
+                  Toshkent,Chorvoq
                 </Typography>
               </Stack>
             </Stack>

@@ -22,9 +22,9 @@ const Footer = () => {
             Zerra
           </Typography>
           <Typography sx={{ fontSize: "14px" }}>
-            2020 Massachusetts Ave
+            2024 Uzbekiston
             <br />
-            NW, Washington, DC 20036
+            Jizzax
           </Typography>
         </Stack>
 
@@ -92,11 +92,7 @@ const Footer = () => {
           paddingTop: "20px",
         }}
       >
-        <Typography>©2023 Zerra. All rights reserved</Typography>
-        <Box sx={{ display: "flex", gap: "20px" }}>
-          <Typography>Terms & Conditions</Typography>
-          <Typography>Privacy Policy</Typography>
-        </Box>
+        <Typography>©2023 Zerra. Barcha huquqlar himoyalangan</Typography>
       </Box>
     </Box>
   );

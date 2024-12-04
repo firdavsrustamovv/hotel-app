@@ -54,14 +54,14 @@ export default function RoomCard({
           <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
             <BedIcon fontSize="small" />
             <Typography variant="body2" color="text.secondary">
-              {beds} bed
+              {beds} yotoq
             </Typography>
           </Box>
 
           <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
             <BathtubIcon fontSize="small" />
             <Typography variant="body2" color="text.secondary">
-              {bathrooms} bathroom
+              {bathrooms} hammom
             </Typography>
           </Box>
 
@@ -69,7 +69,7 @@ export default function RoomCard({
             <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
               <BalconyIcon fontSize="small" />
               <Typography variant="body2" color="text.secondary">
-                balcony
+                balkon
               </Typography>
             </Box>
           )}
@@ -85,7 +85,7 @@ export default function RoomCard({
             ${price}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            / Night
+            / Kun
           </Typography>
         </Box>
       </CardContent>
