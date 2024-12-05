@@ -92,7 +92,7 @@ const Facilities = (props: Props) => {
             <Divider sx={{ marginTop: "40px", background: "black" }} />
           </Stack>
           <Stack mt={"50px"} height={"100%"}>
-            <FacilitiesCard data={facilitiesData} links="" />
+            {/* <FacilitiesCard data={facilitiesData} links="" /> */}
           </Stack>
         </Box>
       </Container>

@@ -2,9 +2,10 @@ import { Stack, Box, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
 interface Data {
+  id: number;
+  name: string;
   img: string;
   title: string;
-  infomation: string;
 }
 interface CardProps {
   data: Data[];
@@ -16,10 +17,10 @@ const FacilitiesCard: React.FC<CardProps> = ({ data, links }) => {
     <Box>
       <Stack direction={"column"} flexWrap={"wrap"}>
         <Stack gap={5}>
-          {data.map((iteam, idx) => (
+          {data.map((iteam) => (
             <Link
               to={links}
-              key={idx}
+              key={iteam.id}
               style={{ textDecoration: "none", color: "inherit" }}
             >
               <Stack
@@ -36,7 +37,7 @@ const FacilitiesCard: React.FC<CardProps> = ({ data, links }) => {
                 }}
               >
                 <img
-                  src={iteam.img}
+                  src={`img/${iteam.img}`}
                   alt={iteam.title}
                   style={{
                     width: "420px",
@@ -45,8 +46,8 @@ const FacilitiesCard: React.FC<CardProps> = ({ data, links }) => {
                   }}
                 />
                 <Stack gap={3} alignSelf={"center"}>
-                  <Typography variant="h4">{iteam.title}</Typography>
-                  <Typography variant="h6">{iteam.infomation}</Typography>
+                  <Typography variant="h4">{iteam.name}</Typography>
+                  <Typography variant="h6">{iteam.title}</Typography>
                 </Stack>
               </Stack>
             </Link>
