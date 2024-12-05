@@ -53,7 +53,6 @@ const Blog = (props: Props) => {
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           height: "450px",
-          maxWidth: "1550px",
           width: "100%",
         }}
       >

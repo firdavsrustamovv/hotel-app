@@ -63,7 +63,6 @@ const Rooms = (props: Props) => {
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           height: "450px",
-          maxWidth: "1550px",
           width: "100%",
         }}
       >
@@ -115,7 +114,7 @@ const Rooms = (props: Props) => {
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           height: "500px",
-          maxWidth: "1550px",
+
           width: "100%",
           position: "relative",
         }}

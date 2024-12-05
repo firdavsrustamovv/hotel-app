@@ -6,7 +6,6 @@ import birthday from "../images/Screenshot 2024-11-26 223500.png";
 import breakfast from "../images/breakfast.png";
 import honeymon from "../images/honeymon.png";
 import FacilitiesCard from "../components/FacilitiesCard";
-import { Link } from "react-router-dom";
 
 type Props = {};
 const offersData = [
@@ -45,7 +44,6 @@ const Offers = (props: Props) => {
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           height: "450px",
-          maxWidth: "1550px",
           width: "100%",
         }}
       >
