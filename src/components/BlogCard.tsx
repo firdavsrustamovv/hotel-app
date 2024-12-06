@@ -37,7 +37,7 @@ const BlogCard: React.FC<CardProps> = ({ data, link, fontSize }) => {
             }}
           >
             <img
-              src={item.img}
+              src={`img/${item.img}`}
               alt={item.title}
               style={{
                 width: "350px",

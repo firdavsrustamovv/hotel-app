@@ -5,45 +5,43 @@ import golf from "../images/gold.png";
 import imgForBlog from "../images/imgForBlog.png";
 import imgForBlog2 from "../images/imgForBlog2.png";
 import BlogCard from "../components/BlogCard";
-import bath from "../images/bath.png";
-import supermarket from "../images/supermarket.png";
-import webinar from "../images/webinar.png";
 
+import { createClient, SupabaseClient } from "@supabase/supabase-js";
+import { useEffect, useState, useCallback } from "react";
 type Props = {};
-const blogData = [
-  {
-    img: bath,
-    title: "Bizda hammasi zamonaviy",
-    infomation: "25 May 2023",
-  },
-  {
-    img: supermarket,
-    title: "Mehmonxona yaqinida ajoyib supermarketlar",
-    infomation: "12 May 2023",
-  },
-  {
-    img: webinar,
-    title: "Vebinarlar uchun maxsus zallar",
-    infomation: "15 Apr 2023",
-  },
-  {
-    img: supermarket,
-    title: "Mehmonxona yaqinida ajoyib supermarketlar",
-    infomation: "12 May 2023",
-  },
-  {
-    img: webinar,
-    title: "Vebinarlar uchun maxsus zallar",
-    infomation: "15 Apr 2023",
-  },
-  {
-    img: bath,
-    title: "Bizda hammasi zamonaviy",
-    infomation: "25 May 2023",
-  },
-];
+interface Data {
+  id?: number;
+  img: string;
+  title: string;
+  infomation: string;
+}
+const SUPABASE_URL = process.env.REACT_APP_SUPABASE_URL as string;
+const SUPABASE_KEY = process.env.REACT_APP_SUPABASE_KEY as string;
+const supabase: SupabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 const Blog = (props: Props) => {
+  const [blogs, setBlogs] = useState<Data[]>([]);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchData = async () => {
+    try {
+      const { data, error } = await supabase.from("blogForHotel").select("*");
+
+      if (error) {
+        throw error;
+      }
+      setBlogs(data || []);
+    } catch (err: any) {
+      console.error("Fetch error: ", err.message);
+      setError("Failed to fetch data");
+    }
+  };
+  useCallback(() => {
+    fetchData();
+  }, [blogs]);
+  useEffect(() => {
+    fetchData();
+  }, []);
   return (
     <Box>
       <Box
@@ -129,7 +127,7 @@ const Blog = (props: Props) => {
         </Box>
         <Box mt={"100px"} height={"auto"}>
           <Stack>
-            <BlogCard data={blogData} link="/blog" fontSize="15px" />
+            <BlogCard data={blogs} link="/blog" fontSize="15px" />
           </Stack>
         </Box>
       </Container>

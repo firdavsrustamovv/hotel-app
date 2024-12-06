@@ -2,51 +2,44 @@ import FacilitiesCard from "../components/FacilitiesCard";
 import Header from "../components/Header";
 import facilities from "../images/facilities.png";
 import { Box, Stack, Container, Typography, Divider } from "@mui/material";
-import swimingPool from "../images/swimingPool.png";
-import gym from "../images/gym.png";
-import cafe from "../images/cafe.png";
+import { createClient, SupabaseClient } from "@supabase/supabase-js";
+import { useEffect, useState, useCallback } from "react";
 
 type Props = {};
-const facilitiesData = [
-  {
-    img: swimingPool,
-    title: "Yopiq suzish havzasi",
-    infomation:
-      "Bizda yopiq suzish havzasi mavjud bo'lib  yilning 4 faslida ham ishlaydi",
-  },
-  {
-    img: gym,
-    title: "Sport zali mashg'ulot maydoni",
-    infomation:
-      "Bizda Sport zali mashg'ulot maydoni mavjud va u zamonaviy sport anjomlari bilan ta'minlangan",
-  },
-  {
-    img: cafe,
-    title: "Kafe va restoran",
-    infomation:
-      "Kafe va restoranlarimiz 24 soat ishlaydi va siz xohlagan ta'omingizni tanovul qilishingiz mumkin",
-  },
-  {
-    img: gym,
-    title: "Sport zali mashg'ulot maydoni",
-    infomation:
-      "Bizda Sport zali mashg'ulot maydoni mavjud va u zamonaviy sport anjomlari bilan ta'minlangan",
-  },
-  {
-    img: cafe,
-    title: "Kafe va restoran",
-    infomation:
-      "Kafe va restoranlarimiz 24 soat ishlaydi va siz xohlagan ta'omingizni tanovul qilishingiz mumkin",
-  },
-  {
-    img: swimingPool,
-    title: "Yopiq suzish havzasi",
-    infomation:
-      "Bizda yopiq suzish havzasi mavjud bo'lib  yilning 4 faslida ham ishlaydi",
-  },
-];
-
+interface Hotel {
+  id: number;
+  name: string;
+  title: string;
+  img: string;
+}
+const SUPABASE_URL = process.env.REACT_APP_SUPABASE_URL as string;
+const SUPABASE_KEY = process.env.REACT_APP_SUPABASE_KEY as string;
+const supabase: SupabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
 const Facilities = (props: Props) => {
+  const [hotels, setHotels] = useState<Hotel[]>([]);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchData = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("hotelFacilities")
+        .select("*");
+
+      if (error) {
+        throw error;
+      }
+      setHotels(data || []);
+    } catch (err: any) {
+      console.error("Fetch error: ", err.message);
+      setError("Failed to fetch data");
+    }
+  };
+  useCallback(() => {
+    fetchData();
+  }, [hotels]);
+  useEffect(() => {
+    fetchData();
+  }, []);
   return (
     <Box>
       <Box
@@ -92,7 +85,7 @@ const Facilities = (props: Props) => {
             <Divider sx={{ marginTop: "40px", background: "black" }} />
           </Stack>
           <Stack mt={"50px"} height={"100%"}>
-            {/* <FacilitiesCard data={facilitiesData} links="" /> */}
+            <FacilitiesCard data={hotels} links="" />
           </Stack>
         </Box>
       </Container>
