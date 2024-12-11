@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { blogDataNewRooms, blogData } from "./Rooms";
+// import { blogDataNewRooms, blogData } from "./Rooms";
 import {
   Typography,
   Box,
@@ -18,46 +18,91 @@ import ShowerIcon from "@mui/icons-material/Shower";
 import WifiIcon from "@mui/icons-material/Wifi";
 import TvIcon from "@mui/icons-material/Tv";
 import CoffeeMakerIcon from "@mui/icons-material/CoffeeMaker";
-import BlogCard from "../components/BlogCard";
-import executiveRoom from "../images/executiveRoom.png";
-import juniorRoom from "../images/juniorRoom.png";
-import grandRoom from "../images/grandRoom.png";
+// import BlogCard from "../components/BlogCard";
+// import executiveRoom from "../images/executiveRoom.png";
+// import juniorRoom from "../images/juniorRoom.png";
+// import grandRoom from "../images/grandRoom.png";
+import { SupabaseClient, createClient } from "@supabase/supabase-js";
+import { useEffect, useState } from "react";
+import DetailRoomCard from "../components/DetailRoomCard";
 type Props = {};
-const blogDatas = [
-  {
-    id: 1,
-    img: executiveRoom,
-    title: "Ota-onalar uchun",
-    infomation: "50 m² 2 yotoqxona 1 hammom va balkon",
-  },
-  {
-    id: 2,
-    img: juniorRoom,
-    title: "Bollalar uchun",
-    infomation: "50 m² 1 yotoqxona 1 hammom balkon",
-  },
-  {
-    id: 3,
-    img: grandRoom,
-    title: "Katta oila uchun",
-    infomation: "80 m² 2 yotoqxona 1 hammom balkon",
-  },
-];
+interface OtherRooms {
+  id: number;
+  infomation: string;
+  title: string;
+  img: string;
+}
+// const blogDatas = [
+//   {
+//     id: 1,
+//     img: executiveRoom,
+//     title: "Ota-onalar uchun",
+//     infomation: "50 m² 2 yotoqxona 1 hammom va balkon",
+//   },
+//   {
+//     id: 2,
+//     img: juniorRoom,
+//     title: "Bollalar uchun",
+//     infomation: "50 m² 1 yotoqxona 1 hammom balkon",
+//   },
+//   {
+//     id: 3,
+//     img: grandRoom,
+//     title: "Katta oila uchun",
+//     infomation: "80 m² 2 yotoqxona 1 hammom balkon",
+//   },
+// ];
+
+const SUPABASE_URL = process.env.REACT_APP_SUPABASE_URL as string;
+const SUPABASE_KEY = process.env.REACT_APP_SUPABASE_KEY as string;
+const supabase: SupabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 const DetailRooms = (props: Props) => {
   const { id } = useParams<{ id: string }>();
-  const numericId = parseInt(id || "0");
-  const allRooms = [...blogData, ...blogDataNewRooms];
-  const room = allRooms.find((room) => room.id === numericId);
+  // const numericId = parseInt(id || "0");
+  // const allRooms = [...blogData, ...blogDataNewRooms];
+  // const room = allRooms.find((room) => room.id === numericId);
+  const [room, setRoom] = useState<any>([]);
+  const [otherRoom, setOtherRoom] = useState<OtherRooms[]>([]);
+
   const navigate = useNavigate();
 
-  if (!room) {
-    return (
-      <Box sx={{ textAlign: "center", marginTop: "50px" }}>
-        <Typography variant="h4">Room not found</Typography>
-      </Box>
-    );
-  }
+  const fetchData = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("roomsForHotel")
+        .select("*")
+        .eq("id", id);
+
+      if (error) {
+        throw error;
+      }
+
+      setRoom(data[0] || []);
+    } catch (err: any) {
+      console.error("Fetch error: ", err.message);
+    }
+  };
+  const fetchOtherRoomData = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("roomsForHotel")
+        .select("*")
+        .range(3, 5);
+
+      if (error) {
+        throw error;
+      }
+
+      setOtherRoom(data || []);
+    } catch (err: any) {
+      console.error("Fetch error: ", err.message);
+    }
+  };
+  useEffect(() => {
+    fetchData();
+    fetchOtherRoomData();
+  }, [id]);
 
   const facilities = [
     { icon: <PhoneIcon fontSize="large" />, label: "Telefon" },
@@ -67,6 +112,14 @@ const DetailRooms = (props: Props) => {
     { icon: <TvIcon fontSize="large" />, label: "LCD Televizor" },
     { icon: <CoffeeMakerIcon fontSize="large" />, label: "Coffee Apparat" },
   ];
+
+  if (!room) {
+    return (
+      <Box sx={{ textAlign: "center", marginTop: "50px" }}>
+        <Typography variant="h4">Room not found</Typography>
+      </Box>
+    );
+  }
 
   return (
     <Box>
@@ -260,7 +313,7 @@ const DetailRooms = (props: Props) => {
             <Typography variant="h4">Boshqa Xonalar</Typography>
           </Stack>
           <Stack mt={"30px"} height={"auto"}>
-            <BlogCard data={blogDatas} link={`/rooms`} fontSize="15px" />
+            <DetailRoomCard data={otherRoom} link={`/rooms`} fontSize="15px" />
           </Stack>
         </Box>
       </Container>

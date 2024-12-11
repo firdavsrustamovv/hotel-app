@@ -20,11 +20,17 @@ import {
 import roomBackground from "../images/room.png";
 import success from "../images/success-icon-23187.png";
 import Header from "../components/Header";
-import { blogDataNewRooms, blogData } from "./Rooms";
+import executiveRoom from "../images/executiveRoom.png";
+import juniorRoom from "../images/juniorRoom.png";
+import grandRoom from "../images/grandRoom.png";
+import executiveRoom2 from "../images/executiveRoom2.png";
+import premiumRoom from "../images/premiumRoom.png";
+import premiumDeluxeRoom from "../images/premiumDeluxeRoom.png";
 import RoomCard from "../components/RoomCard";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { SupabaseClient, createClient } from "@supabase/supabase-js";
+import { useEffect, useState } from "react";
 
 type Props = {};
 interface IFormInput {
@@ -37,6 +43,12 @@ interface IFormInput {
   totalRoom: string;
   totalGuest: string;
   codeRefferal: string;
+}
+interface BookingRoom {
+  id: number;
+  infomation: string;
+  title: string;
+  img: string;
 }
 
 const steps = ["Shaxsiy ma'lumotlar", "Bron qilish ma'lumotlari", "Xulosa"];
@@ -53,6 +65,9 @@ const dataForBooking: IFormInput[] = [
     totalRoom: "",
   },
 ];
+const SUPABASE_URL = process.env.REACT_APP_SUPABASE_URL as string;
+const SUPABASE_KEY = process.env.REACT_APP_SUPABASE_KEY as string;
+const supabase: SupabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 const BookingRoom = (props: Props) => {
   const { register, handleSubmit } = useForm<IFormInput>();
@@ -74,15 +89,33 @@ const BookingRoom = (props: Props) => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const numericId = parseInt(id || "0");
-  const allRooms = [...blogData, ...blogDataNewRooms];
-  const room = allRooms.find((room) => room.id === numericId);
-
+  // const allRooms = [...blogData, ...blogDataNewRooms];
+  // const room = allRooms.find((room) => room.id === numericId);
+  const [room, setRoom] = useState<any>([]);
   const [step, setStep] = useState(0);
   const handleNext = () => {
     setStep((prevStep) => prevStep + 1);
   };
 
-  console.log(id);
+  const fetchData = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("roomsForHotel")
+        .select("*")
+        .eq("id", id);
+
+      if (error) {
+        throw error;
+      }
+
+      setRoom(data[0] || []);
+    } catch (err: any) {
+      console.error("Fetch error: ", err.message);
+    }
+  };
+  useEffect(() => {
+    fetchData();
+  }, [id]);
 
   return (
     <Box>

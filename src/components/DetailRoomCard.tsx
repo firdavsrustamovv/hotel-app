@@ -11,15 +11,15 @@ export interface Data {
 interface CardProps {
   data: Data[];
   link: string;
-  fontSize: string;
+  fontSize?: string;
 }
 
-const BlogCard: React.FC<CardProps> = ({ data, link, fontSize }) => {
+const DetailRoomCard: React.FC<CardProps> = ({ data, link, fontSize }) => {
   return (
     <Stack direction="row" flexWrap="wrap" gap={2}>
       {data.map((item) => (
         <Link
-          to={link}
+          to={`${link}/${item.id}`}
           key={item.id}
           style={{ textDecoration: "none", color: "inherit", display: "block" }}
         >
@@ -37,7 +37,7 @@ const BlogCard: React.FC<CardProps> = ({ data, link, fontSize }) => {
             }}
           >
             <img
-              src={`img/${item.img}`}
+              src={item.img}
               alt={item.title}
               style={{
                 width: "350px",
@@ -56,4 +56,4 @@ const BlogCard: React.FC<CardProps> = ({ data, link, fontSize }) => {
   );
 };
 
-export default BlogCard;
+export default DetailRoomCard;
