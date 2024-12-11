@@ -10,6 +10,8 @@ import Blog from "./pages/Blog";
 import ContactUs from "./pages/ContactUs";
 import Footer from "./components/Footer";
 import BookingRoom from "./pages/BookingRoom";
+import SignIn from "./components/sign-in/SignIn";
+import SignUp from "./components/sign-up/SignUp";
 
 type Props = {};
 
@@ -17,6 +19,8 @@ const App = (props: Props) => {
   return (
     <div>
       <Routes>
+        <Route path="/signIn" element={<SignIn />} />
+        <Route path="/signUp" element={<SignUp />} />
         <Route path="/" element={<Home />} />
         <Route path="/rooms/*">
           <Route index element={<Rooms />} />
