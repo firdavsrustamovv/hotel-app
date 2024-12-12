@@ -12,7 +12,7 @@ import Stack from "@mui/material/Stack";
 import MuiCard from "@mui/material/Card";
 import { styled } from "@mui/material/styles";
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Card = styled(MuiCard)(({ theme }) => ({
@@ -64,6 +64,7 @@ export default function SignUp() {
   const [password, setPassword] = useState<string>("");
   const [name, setName] = useState<string>("");
   const navigate = useNavigate();
+  const userToken = localStorage.getItem("token");
 
   const validateInputs = () => {
     let isValid = true;
@@ -109,7 +110,7 @@ export default function SignUp() {
       email,
       password,
     });
-    console.log(data);
+    localStorage.setItem("token", data.user?.id?.toString() || "");
 
     if (error) {
       setEmailErrorMessage(`Error: ${error.message}`);
@@ -118,6 +119,11 @@ export default function SignUp() {
       navigate("/");
     }
   };
+  useEffect(() => {
+    if (userToken) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <Box>

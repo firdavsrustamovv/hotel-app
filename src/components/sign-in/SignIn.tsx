@@ -58,11 +58,10 @@ export default function SignUp() {
   const [emailErrorMessage, setEmailErrorMessage] = React.useState("");
   const [passwordError, setPasswordError] = React.useState(false);
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState("");
-  const [nameError, setNameError] = React.useState(false);
-  const [nameErrorMessage, setNameErrorMessage] = React.useState("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const navigate = useNavigate();
+  const userToken = localStorage.getItem("token");
 
   const validateInputs = () => {
     let isValid = true;
@@ -99,7 +98,11 @@ export default function SignUp() {
       email,
       password,
     });
-    console.log(data);
+    localStorage.setItem("token", data.session?.access_token.toString() || "");
+    localStorage.setItem(
+      "userData",
+      data.user?.user_metadata.email.toString() || ""
+    );
 
     if (error) {
       setEmailErrorMessage(`Error: ${error.message}`);
@@ -107,7 +110,13 @@ export default function SignUp() {
       console.log("Signup successful:", data);
       navigate("/");
     }
+    console.log("data", data);
   };
+  React.useEffect(() => {
+    if (userToken) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <Box>

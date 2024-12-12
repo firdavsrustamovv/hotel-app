@@ -99,6 +99,8 @@ const Home = () => {
   const [blogs, setBlog] = useState<Blog[]>([]);
   const [error, setError] = useState<string | null>(null);
 
+  const userToken = localStorage.getItem("token");
+
   const fetchData = async () => {
     try {
       const { data, error } = await supabase
@@ -137,6 +139,9 @@ const Home = () => {
   useEffect(() => {
     fetchData();
     fetchBlogData();
+    if (!userToken) {
+      navigate("/signUp");
+    }
   }, []);
 
   return (

@@ -17,7 +17,14 @@ const pages = [
   { label: "Takliflarimiz", path: "/offers" },
   { label: "Biz haqimizda", path: "/about" },
   { label: "Blog", path: "/blog" },
+  { label: "Aloqa", path: "/contact" },
 ];
+
+const logOut = () => {
+  localStorage.removeItem("token");
+  localStorage.removeItem("userData");
+  window.location.reload();
+};
 
 const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -94,19 +101,18 @@ const Header = () => {
           </Box>
 
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <Link to={"/contact"}>
-              <Button
-                sx={{
-                  color: "white",
-                  border: "1px solid white",
-                  "&:hover": {
-                    backgroundColor: "rgba(255, 255, 255, 0.2)",
-                  },
-                }}
-              >
-                Aloqa
-              </Button>
-            </Link>
+            <Button
+              onClick={() => logOut()}
+              sx={{
+                color: "white",
+                border: "1px solid white",
+                "&:hover": {
+                  backgroundColor: "rgba(255, 255, 255, 0.2)",
+                },
+              }}
+            >
+              Chiqish
+            </Button>
           </Box>
         </Stack>
       </Container>
