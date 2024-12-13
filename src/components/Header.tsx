@@ -9,6 +9,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
 import Logo from "../images/Logo.png";
+import Avatar from "@mui/material/Avatar";
 import { Stack } from "@mui/material";
 const pages = [
   { label: "Asosiy", path: "/" },
@@ -100,7 +101,8 @@ const Header = () => {
             </Menu>
           </Box>
 
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+          <Box sx={{ display: { xs: "none", md: "flex", gap: "20px" } }}>
+            <Avatar src="/broken-image.jpg" sx={{ cursor: "pointer" }} />
             <Button
               onClick={() => logOut()}
               sx={{

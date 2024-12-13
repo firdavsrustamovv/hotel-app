@@ -20,12 +20,6 @@ import {
 import roomBackground from "../images/room.png";
 import success from "../images/success-icon-23187.png";
 import Header from "../components/Header";
-import executiveRoom from "../images/executiveRoom.png";
-import juniorRoom from "../images/juniorRoom.png";
-import grandRoom from "../images/grandRoom.png";
-import executiveRoom2 from "../images/executiveRoom2.png";
-import premiumRoom from "../images/premiumRoom.png";
-import premiumDeluxeRoom from "../images/premiumDeluxeRoom.png";
 import RoomCard from "../components/RoomCard";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -52,47 +46,40 @@ interface BookingRoom {
 }
 
 const steps = ["Shaxsiy ma'lumotlar", "Bron qilish ma'lumotlari", "Xulosa"];
-const dataForBooking: IFormInput[] = [
-  {
-    checkIn: "",
-    checkOut: "",
-    codeRefferal: "",
-    email: "",
-    lastName: "",
-    name: "",
-    phoneNumber: "",
-    totalGuest: "",
-    totalRoom: "",
-  },
-];
 const SUPABASE_URL = process.env.REACT_APP_SUPABASE_URL as string;
 const SUPABASE_KEY = process.env.REACT_APP_SUPABASE_KEY as string;
 const supabase: SupabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 const BookingRoom = (props: Props) => {
   const { register, handleSubmit } = useForm<IFormInput>();
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
+  const [bookingRoom, setBookingRoom] = useState<IFormInput[]>([]);
+
+  const onSubmit: SubmitHandler<IFormInput> = async (val) => {
     handleNext();
-    console.log(data);
-    dataForBooking.push({
-      name: data.name,
-      lastName: data.lastName,
-      email: data.email,
-      phoneNumber: data.phoneNumber,
-      checkIn: data.checkIn,
-      checkOut: data.checkOut,
-      totalRoom: data.totalRoom,
-      totalGuest: data.totalGuest,
-      codeRefferal: data.codeRefferal,
-    });
+
+    const { data, error } = await supabase
+      .from("bookingRoom")
+      .insert([
+        {
+          name: val.name,
+          lastName: val.lastName,
+          email: val.email,
+          phoneNumber: val.phoneNumber,
+          checkIn: val.checkIn,
+          checkOut: val.checkOut,
+          totalRoom: val.totalRoom,
+          totalGuest: val.totalGuest,
+          codeRefferal: val.codeRefferal,
+        },
+      ])
+      .select("*");
+    setBookingRoom(data || []);
   };
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
-  const numericId = parseInt(id || "0");
-  // const allRooms = [...blogData, ...blogDataNewRooms];
-  // const room = allRooms.find((room) => room.id === numericId);
   const [room, setRoom] = useState<any>([]);
   const [step, setStep] = useState(0);
+
   const handleNext = () => {
     setStep((prevStep) => prevStep + 1);
   };
@@ -276,7 +263,8 @@ const BookingRoom = (props: Props) => {
                     <Button
                       fullWidth
                       variant="contained"
-                      type="submit"
+                      type="button"
+                      onClick={handleNext}
                       size="large"
                       sx={{
                         mt: 3,
@@ -413,35 +401,35 @@ const BookingRoom = (props: Props) => {
                         <Typography>Full Name</Typography>
                         <Stack direction={"row"} gap={"5px"}>
                           <Typography>
-                            {dataForBooking[dataForBooking.length - 1].lastName}
+                            {bookingRoom.map((data) => data.lastName)}
                           </Typography>
                           <Typography>
-                            {dataForBooking[dataForBooking.length - 1].name}
+                            {bookingRoom.map((data) => data.name)}
                           </Typography>
                         </Stack>
                       </Stack>
                       <Stack direction={"row"} justifyContent={"space-between"}>
                         <Typography>Tootal Room</Typography>
                         <Typography>
-                          {dataForBooking.map((data) => data.totalRoom)}
+                          {bookingRoom.map((data) => data.totalRoom)}
                         </Typography>
                       </Stack>
                       <Stack direction={"row"} justifyContent={"space-between"}>
                         <Typography>Tootal Guest</Typography>
                         <Typography>
-                          {dataForBooking.map((data) => data.totalGuest)}
+                          {bookingRoom.map((data) => data.totalGuest)}
                         </Typography>
                       </Stack>
                       <Stack direction={"row"} justifyContent={"space-between"}>
                         <Typography>Check In</Typography>
                         <Typography>
-                          {dataForBooking.map((data) => data.checkIn)}
+                          {bookingRoom.map((data) => data.checkIn)}
                         </Typography>
                       </Stack>
                       <Stack direction={"row"} justifyContent={"space-between"}>
                         <Typography>Check Out</Typography>
                         <Typography>
-                          {dataForBooking.map((data) => data.checkOut)}
+                          {bookingRoom.map((data) => data.checkOut)}
                         </Typography>
                       </Stack>
                       <Stack direction={"row"} justifyContent={"space-between"}>
@@ -461,7 +449,8 @@ const BookingRoom = (props: Props) => {
                     <Button
                       fullWidth
                       variant="contained"
-                      type="submit"
+                      type="button"
+                      onClick={handleNext}
                       size="large"
                       sx={{
                         mt: 3,
@@ -489,12 +478,12 @@ const BookingRoom = (props: Props) => {
                         <Typography fontSize={"20px"}>
                           Xaridingiz uchun rahmat
                         </Typography>
-                        <img src={success} width={"230px"} alt="succes" />
+                        <img src={success} width={230} alt="succes" />
                         <Button
                           fullWidth
                           variant="contained"
+                          type="button"
                           onClick={() => navigate("/")}
-                          type="submit"
                           size="large"
                           sx={{
                             mt: 3,
