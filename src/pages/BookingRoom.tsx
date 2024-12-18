@@ -70,6 +70,7 @@ const BookingRoom = (props: Props) => {
           totalRoom: val.totalRoom,
           totalGuest: val.totalGuest,
           codeRefferal: val.codeRefferal,
+          // roomName: room?.title,
         },
       ])
       .select("*");

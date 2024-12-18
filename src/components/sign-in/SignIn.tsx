@@ -59,6 +59,7 @@ export default function SignUp() {
   const [passwordError, setPasswordError] = React.useState(false);
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState("");
   const [email, setEmail] = useState<string>("");
+  const [name, setName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const navigate = useNavigate();
   const userToken = localStorage.getItem("token");
@@ -99,11 +100,8 @@ export default function SignUp() {
       password,
     });
     localStorage.setItem("token", data.session?.access_token.toString() || "");
-
-    // localStorage.setItem(
-    //   "userData",
-    //   data.user?.user_metadata.email.toString() || ""
-    // );
+    localStorage.setItem("userName", name);
+    localStorage.setItem("userEmail", email);
 
     if (error) {
       setEmailErrorMessage(`Error: ${error.message}`);
@@ -136,6 +134,21 @@ export default function SignUp() {
             onSubmit={handleSubmit}
             sx={{ display: "flex", flexDirection: "column", gap: 2 }}
           >
+            <FormControl>
+              <FormLabel htmlFor="Ism">Ism</FormLabel>
+              <TextField
+                required
+                fullWidth
+                id="name"
+                placeholder="Firdavs"
+                name="name"
+                autoComplete="name"
+                error={emailError}
+                helperText={emailErrorMessage}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </FormControl>
             <FormControl>
               <FormLabel htmlFor="email">Email</FormLabel>
               <TextField

@@ -44,6 +44,7 @@ const FacilitiesCard: React.FC<CardProps> = ({ data, links }) => {
                     height: "100%",
                     borderRadius: "8px",
                   }}
+                  loading="lazy"
                 />
                 <Stack gap={3} alignSelf={"center"}>
                   <Typography variant="h4">{iteam.name}</Typography>

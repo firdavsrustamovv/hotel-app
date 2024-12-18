@@ -51,13 +51,16 @@ interface Blog {
 const SUPABASE_URL = process.env.REACT_APP_SUPABASE_URL as string;
 const SUPABASE_KEY = process.env.REACT_APP_SUPABASE_KEY as string;
 const supabase: SupabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
+
 const Home = () => {
-  const { register, handleSubmit } = useForm<IFormInput>();
-  const navigate = useNavigate();
-  const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data);
   const [hotels, setHotels] = useState<Hotel[]>([]);
   const [blogs, setBlog] = useState<Blog[]>([]);
   const [error, setError] = useState<string | null>(null);
+
+  const { register, handleSubmit } = useForm<IFormInput>();
+  const navigate = useNavigate();
+
+  const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data);
 
   const fetchData = async () => {
     try {

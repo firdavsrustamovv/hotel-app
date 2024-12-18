@@ -38,7 +38,7 @@ const supabase: SupabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 const Offers = (props: Props) => {
   const [offers, setOffers] = useState<OffersData[]>([]);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState("");
 
   const fetchData = async () => {
     try {
