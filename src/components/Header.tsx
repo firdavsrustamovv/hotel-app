@@ -1,5 +1,5 @@
-import React from "react";
-import { NavLink, Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -11,6 +11,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Logo from "../images/Logo.png";
 import Avatar from "@mui/material/Avatar";
 import { Stack } from "@mui/material";
+
 const pages = [
   { label: "Asosiy", path: "/" },
   { label: "Xonalar", path: "/rooms" },
@@ -21,16 +22,18 @@ const pages = [
   { label: "Aloqa", path: "/contact" },
 ];
 
-const logOut = () => {
-  localStorage.removeItem("token");
-  localStorage.removeItem("userData");
-  window.location.reload();
-};
-
 const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
+  // const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [token, setToken] = useState<string | null>();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    setToken(storedToken);
+  }, []);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -38,6 +41,17 @@ const Header = () => {
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
+  };
+
+  const handleAuth = () => {
+    if (token) {
+      localStorage.removeItem("token");
+      localStorage.removeItem("userName");
+      localStorage.removeItem("userEmail");
+      setToken(null);
+    } else {
+      navigate("/signUp");
+    }
   };
 
   return (
@@ -102,9 +116,11 @@ const Header = () => {
           </Box>
 
           <Box sx={{ display: { xs: "none", md: "flex", gap: "20px" } }}>
-            <Avatar src="/broken-image.jpg" sx={{ cursor: "pointer" }} />
+            {token && (
+              <Avatar src="/broken-image.jpg" sx={{ cursor: "pointer" }} />
+            )}
             <Button
-              onClick={() => logOut()}
+              onClick={handleAuth}
               sx={{
                 color: "white",
                 border: "1px solid white",
@@ -113,7 +129,7 @@ const Header = () => {
                 },
               }}
             >
-              Chiqish
+              {token ? "Chiqish" : "Kirish"}
             </Button>
           </Box>
         </Stack>

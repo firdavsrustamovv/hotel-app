@@ -18,9 +18,6 @@ import image1 from "../images/Image1.png";
 import image2 from "../images/Image2.png";
 import image3 from "../images/Image3.png";
 import image4 from "../images/Image4.png";
-import news from "../images/new.png";
-import supermarket from "../images/supermarket.png";
-import webinar from "../images/webinar.png";
 import Quality from "../components/Quality";
 import FacilitiesCard from "../components/FacilitiesCard";
 import { Link, useNavigate } from "react-router-dom";
@@ -33,43 +30,6 @@ const itemData = [
   { img: image2 },
   { img: image3 },
   { img: image4 },
-];
-
-//   {
-//     img: swimingPool,
-//     title: "Yopiq suzish havzasi",
-//     infomation:
-//       "Bizda yopiq suzish havzasi mavjud bo'lib  yilning 4 faslida ham ishlaydi",
-//   },
-//   {
-//     img: gym,
-//     title: "Sport zali mashg'ulot maydoni",
-//     infomation:
-//       "Bizda Sport zali mashg'ulot maydoni mavjud va u zamonaviy sport anjomlari bilan ta'minlangan",
-//   },
-//   {
-//     img: cafe,
-//     title: "Kafe va restoran",
-//     infomation:
-//       "Kafe va restoranlarimiz 24 soat ishlaydi va siz xohlagan ta'omingizni tanovul qilishingiz mumkin",
-//   },
-// ];
-const blogData = [
-  {
-    img: news,
-    title: "Yangi imkoniyatlar: katta golf maydoni",
-    infomation: "25 May 2023",
-  },
-  {
-    img: supermarket,
-    title: "Mehmonxona yaqinida ajoyib supermarketlar",
-    infomation: "12 May 2023",
-  },
-  {
-    img: webinar,
-    title: "Vebinarlar uchun maxsus zallar",
-    infomation: "15 Apr 2023",
-  },
 ];
 
 interface IFormInput {
@@ -98,8 +58,6 @@ const Home = () => {
   const [hotels, setHotels] = useState<Hotel[]>([]);
   const [blogs, setBlog] = useState<Blog[]>([]);
   const [error, setError] = useState<string | null>(null);
-
-  const userToken = localStorage.getItem("token");
 
   const fetchData = async () => {
     try {
@@ -139,9 +97,6 @@ const Home = () => {
   useEffect(() => {
     fetchData();
     fetchBlogData();
-    if (!userToken) {
-      navigate("/signUp");
-    }
   }, []);
 
   return (

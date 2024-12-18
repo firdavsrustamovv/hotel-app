@@ -1,5 +1,4 @@
 import { useParams, useNavigate } from "react-router-dom";
-// import { blogDataNewRooms, blogData } from "./Rooms";
 import {
   Typography,
   Box,
@@ -7,6 +6,10 @@ import {
   Container,
   Divider,
   Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
 } from "@mui/material";
 import roomBackground from "../images/room.png";
 import detailRoom1 from "../images/detailRoom1.png";
@@ -18,10 +21,6 @@ import ShowerIcon from "@mui/icons-material/Shower";
 import WifiIcon from "@mui/icons-material/Wifi";
 import TvIcon from "@mui/icons-material/Tv";
 import CoffeeMakerIcon from "@mui/icons-material/CoffeeMaker";
-// import BlogCard from "../components/BlogCard";
-// import executiveRoom from "../images/executiveRoom.png";
-// import juniorRoom from "../images/juniorRoom.png";
-// import grandRoom from "../images/grandRoom.png";
 import { SupabaseClient, createClient } from "@supabase/supabase-js";
 import { useEffect, useState } from "react";
 import DetailRoomCard from "../components/DetailRoomCard";
@@ -32,26 +31,6 @@ interface OtherRooms {
   title: string;
   img: string;
 }
-// const blogDatas = [
-//   {
-//     id: 1,
-//     img: executiveRoom,
-//     title: "Ota-onalar uchun",
-//     infomation: "50 m² 2 yotoqxona 1 hammom va balkon",
-//   },
-//   {
-//     id: 2,
-//     img: juniorRoom,
-//     title: "Bollalar uchun",
-//     infomation: "50 m² 1 yotoqxona 1 hammom balkon",
-//   },
-//   {
-//     id: 3,
-//     img: grandRoom,
-//     title: "Katta oila uchun",
-//     infomation: "80 m² 2 yotoqxona 1 hammom balkon",
-//   },
-// ];
 
 const SUPABASE_URL = process.env.REACT_APP_SUPABASE_URL as string;
 const SUPABASE_KEY = process.env.REACT_APP_SUPABASE_KEY as string;
@@ -59,11 +38,10 @@ const supabase: SupabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 const DetailRooms = (props: Props) => {
   const { id } = useParams<{ id: string }>();
-  // const numericId = parseInt(id || "0");
-  // const allRooms = [...blogData, ...blogDataNewRooms];
-  // const room = allRooms.find((room) => room.id === numericId);
   const [room, setRoom] = useState<any>([]);
   const [otherRoom, setOtherRoom] = useState<OtherRooms[]>([]);
+  const [openDialog, setOpenDialog] = useState(false);
+  const userToken = localStorage.getItem("token");
 
   const navigate = useNavigate();
 
@@ -120,6 +98,18 @@ const DetailRooms = (props: Props) => {
       </Box>
     );
   }
+
+  const checkUser = () => {
+    if (userToken) {
+      navigate(`/rooms/booking/${room.id}`);
+    } else {
+      setOpenDialog(true);
+    }
+  };
+  const handleRegister = () => {
+    setOpenDialog(false);
+    navigate("/signUp");
+  };
 
   return (
     <Box>
@@ -243,7 +233,7 @@ const DetailRooms = (props: Props) => {
               </Stack>
               <Stack mt={"170px"}>
                 <Button
-                  onClick={() => navigate(`/rooms/booking/${room.id}`)}
+                  onClick={checkUser}
                   sx={{ background: "#e8b34a" }}
                   variant="contained"
                 >
@@ -252,6 +242,32 @@ const DetailRooms = (props: Props) => {
               </Stack>
             </Stack>
           </Stack>
+        </Box>
+        <Box>
+          <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
+            <DialogTitle sx={{ fontWeight: "bold" }}>
+              Hisob talab qilinadi
+            </DialogTitle>
+            <DialogContent>
+              <Typography>
+                Siz bron qilishdan oldin hisob qaydnomasini ro'yxatdan
+                o'tkazishingiz kerak. bo'lardi hozir ro'yxatdan o'tishni
+                yoqtirasizmi?
+              </Typography>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={() => setOpenDialog(false)} color="secondary">
+                Bekor qilish
+              </Button>
+              <Button
+                onClick={handleRegister}
+                variant="contained"
+                color="primary"
+              >
+                Roʻyxatdan oʻtish
+              </Button>
+            </DialogActions>
+          </Dialog>
         </Box>
         <Box mt={"100px"}>
           <Box

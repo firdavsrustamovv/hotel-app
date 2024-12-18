@@ -99,10 +99,11 @@ export default function SignUp() {
       password,
     });
     localStorage.setItem("token", data.session?.access_token.toString() || "");
-    localStorage.setItem(
-      "userData",
-      data.user?.user_metadata.email.toString() || ""
-    );
+
+    // localStorage.setItem(
+    //   "userData",
+    //   data.user?.user_metadata.email.toString() || ""
+    // );
 
     if (error) {
       setEmailErrorMessage(`Error: ${error.message}`);
@@ -128,7 +129,7 @@ export default function SignUp() {
             variant="h4"
             sx={{ width: "100%", fontSize: "clamp(2rem, 10vw, 2.15rem)" }}
           >
-            Sign in
+            Tizimga kirish
           </Typography>
           <Box
             component="form"
@@ -141,7 +142,7 @@ export default function SignUp() {
                 required
                 fullWidth
                 id="email"
-                placeholder="your@email.com"
+                placeholder="salom@email.com"
                 name="email"
                 autoComplete="email"
                 error={emailError}
@@ -151,7 +152,7 @@ export default function SignUp() {
               />
             </FormControl>
             <FormControl>
-              <FormLabel htmlFor="password">Password</FormLabel>
+              <FormLabel htmlFor="password">Parol</FormLabel>
               <TextField
                 required
                 fullWidth
@@ -168,17 +169,17 @@ export default function SignUp() {
             </FormControl>
 
             <Button type="submit" fullWidth variant="contained">
-              Sign in
+              Tizimga kirish
             </Button>
           </Box>
           <Divider>
-            <Typography sx={{ color: "text.secondary" }}>or</Typography>
+            <Typography sx={{ color: "text.secondary" }}>yoki</Typography>
           </Divider>
           <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
             <Typography sx={{ textAlign: "center" }}>
-              Don&apos;t have an account?{" "}
+              Hisobingiz yo‘qmi ?{" "}
               <Link href="/signUp" variant="body2">
-                Sign Up
+                Ro'yxatdan o'tish
               </Link>
             </Typography>
           </Box>
