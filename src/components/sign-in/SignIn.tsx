@@ -14,6 +14,7 @@ import { styled } from "@mui/material/styles";
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
@@ -29,6 +30,17 @@ const Card = styled(MuiCard)(({ theme }) => ({
     width: "450px",
   },
 }));
+
+toast.error("Error message", {
+  className: "toastify",
+  position: "top-right",
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  theme: "colored",
+});
 
 const SignUpContainer = styled(Stack)(({ theme }) => ({
   height: "calc((1 - var(--template-frame-height, 0)) * 100dvh)",
@@ -104,9 +116,10 @@ export default function SignUp() {
     localStorage.setItem("userEmail", email);
 
     if (error) {
-      setEmailErrorMessage(`Error: ${error.message}`);
+      toast.error("Email yoki parol notug'ri");
     } else {
       console.log("Signup successful:", data);
+      toast.success("Hisobingizga muvaffaqiyatli kirdingiz!");
       navigate("/");
     }
     console.log("data", data);

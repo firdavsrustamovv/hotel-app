@@ -211,7 +211,7 @@ const Header = () => {
                     variant="h6"
                     component="h2"
                   >
-                    "email": {email}c1
+                    "email": {email}
                   </Typography>
                   <Typography id="transition-modal-description" sx={{ mt: 2 }}>
                     Bron qilingan sana "Kirish"{" "}

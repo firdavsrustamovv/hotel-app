@@ -18,40 +18,33 @@ const FacilitiesCard: React.FC<CardProps> = ({ data, links }) => {
       <Stack direction={"column"} flexWrap={"wrap"}>
         <Stack gap={5}>
           {data.map((iteam) => (
-            <Link
-              to={links}
-              key={iteam.id}
-              style={{ textDecoration: "none", color: "inherit" }}
+            <Stack
+              direction={"row"}
+              gap={"80px"}
+              sx={{
+                transition: "transform 0.3s, box-shadow 0.3s",
+                borderRadius: "8px",
+                "&:hover": {
+                  transform: "scale(1.02)",
+                  boxShadow: "0 4px 15px rgba(0, 0, 0, 0.2)",
+                },
+              }}
             >
-              <Stack
-                direction={"row"}
-                gap={"80px"}
-                sx={{
-                  cursor: "pointer",
-                  transition: "transform 0.3s, box-shadow 0.3s",
+              <img
+                src={`img/${iteam.img}`}
+                alt={iteam.title}
+                style={{
+                  width: "420px",
+                  height: "100%",
                   borderRadius: "8px",
-                  "&:hover": {
-                    transform: "scale(1.02)",
-                    boxShadow: "0 4px 15px rgba(0, 0, 0, 0.2)",
-                  },
                 }}
-              >
-                <img
-                  src={`img/${iteam.img}`}
-                  alt={iteam.title}
-                  style={{
-                    width: "420px",
-                    height: "100%",
-                    borderRadius: "8px",
-                  }}
-                  loading="lazy"
-                />
-                <Stack gap={3} alignSelf={"center"}>
-                  <Typography variant="h4">{iteam.name}</Typography>
-                  <Typography variant="h6">{iteam.title}</Typography>
-                </Stack>
+                loading="lazy"
+              />
+              <Stack gap={3} alignSelf={"center"}>
+                <Typography variant="h4">{iteam.name}</Typography>
+                <Typography variant="h6">{iteam.title}</Typography>
               </Stack>
-            </Link>
+            </Stack>
           ))}
         </Stack>
       </Stack>
