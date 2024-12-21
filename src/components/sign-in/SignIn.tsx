@@ -15,6 +15,12 @@ import { createClient, SupabaseClient } from "@supabase/supabase-js";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { AppDispatch } from "../../store/store";
+import { startLoading, stopLoading } from "../../slice/loaderSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store/store";
+import Loader from "../Loader";
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
@@ -75,6 +81,8 @@ export default function SignUp() {
   const [password, setPassword] = useState<string>("");
   const navigate = useNavigate();
   const userToken = localStorage.getItem("token");
+  const isLoading = useSelector((state: RootState) => state.loader.isLoading);
+  const dispatch = useDispatch();
 
   const validateInputs = () => {
     let isValid = true;
@@ -106,7 +114,7 @@ export default function SignUp() {
     if (!validateInputs()) {
       return;
     }
-
+    dispatch(startLoading());
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
@@ -114,7 +122,7 @@ export default function SignUp() {
     localStorage.setItem("token", data.session?.access_token.toString() || "");
     localStorage.setItem("userName", name);
     localStorage.setItem("userEmail", email);
-
+    dispatch(stopLoading());
     if (error) {
       toast.error("Email yoki parol notug'ri");
     } else {
@@ -124,6 +132,7 @@ export default function SignUp() {
     }
     console.log("data", data);
   };
+
   React.useEffect(() => {
     if (userToken) {
       navigate("/");
@@ -132,6 +141,7 @@ export default function SignUp() {
 
   return (
     <Box>
+      {isLoading && <Loader />}
       <CssBaseline enableColorScheme />
       <SignUpContainer direction="column" justifyContent="space-between">
         <Card variant="outlined">

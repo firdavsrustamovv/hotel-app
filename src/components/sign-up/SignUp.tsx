@@ -117,22 +117,46 @@ export default function SignUp() {
       return;
     }
 
-    const { data, error } = await supabase.auth.signUp({
-      email,
-      password,
-    });
-    localStorage.setItem("token", data.user?.id?.toString() || "");
-    localStorage.setItem("userName", name);
-    localStorage.setItem("userEmail", email);
+    try {
+      const { data } = await supabase
+        .from("usersList")
+        .select("email")
+        .eq("email", email)
+        .single();
 
-    if (error) {
-      toast.error("Ro'yxatdan o'tishda xatolik");
-    } else {
-      console.log("Signup successful:", data);
+      if (data) {
+        toast.error("Your email is already registered");
+        return;
+      }
+      const { error: insertError } = await supabase
+        .from("usersList")
+        .insert([{ name, password, email }]);
+
+      if (insertError) {
+        throw insertError;
+      }
+
+      const { error: signUpError, data: signUpData } =
+        await supabase.auth.signUp({
+          email,
+          password,
+        });
+
+      if (signUpError) {
+        throw signUpError;
+      }
+
+      localStorage.setItem("token", signUpData.user?.id || "");
+      localStorage.setItem("userName", name);
+      localStorage.setItem("userEmail", email);
+
       toast.success("Muvaffaqiyatli ro'yxatdan o'tildi!");
       navigate("/");
+    } catch (error: any) {
+      toast.error(error.message || "Ro'yxatdan o'tishda xatolik");
     }
   };
+
   useEffect(() => {
     if (userToken) {
       navigate("/");
