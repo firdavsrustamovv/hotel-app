@@ -33,12 +33,12 @@ const FacilitiesCard: React.FC<CardProps> = ({ data, links }) => {
               <img
                 src={`img/${iteam.img}`}
                 alt={iteam.title}
+                loading="lazy"
                 style={{
                   width: "420px",
                   height: "100%",
                   borderRadius: "8px",
                 }}
-                loading="lazy"
               />
               <Stack gap={3} alignSelf={"center"}>
                 <Typography variant="h4">{iteam.name}</Typography>

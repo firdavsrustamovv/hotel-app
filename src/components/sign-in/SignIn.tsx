@@ -15,8 +15,6 @@ import { createClient, SupabaseClient } from "@supabase/supabase-js";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { AppDispatch } from "../../store/store";
 import { startLoading, stopLoading } from "../../slice/loaderSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/store";

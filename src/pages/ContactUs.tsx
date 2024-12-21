@@ -11,15 +11,13 @@ import contactUs from "../images/contactUs.png";
 import Header from "../components/Header";
 import { useForm, SubmitHandler } from "react-hook-form";
 
-type Props = {};
-
 interface IFormInput {
   name: string;
   email: string;
   message: string;
 }
 
-const ContactUs = (props: Props) => {
+const ContactUs = () => {
   const { register, handleSubmit } = useForm<IFormInput>();
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
@@ -167,7 +165,6 @@ const ContactUs = (props: Props) => {
           </Stack>
         </Box>
       </Container>
-      <Box height={"50px"}></Box>
     </Box>
   );
 };

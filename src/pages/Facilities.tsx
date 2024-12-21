@@ -5,7 +5,6 @@ import { Box, Stack, Container, Typography, Divider } from "@mui/material";
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
 import { useEffect, useState, useCallback } from "react";
 
-type Props = {};
 interface Hotel {
   id: number;
   name: string;
@@ -15,9 +14,8 @@ interface Hotel {
 const SUPABASE_URL = process.env.REACT_APP_SUPABASE_URL as string;
 const SUPABASE_KEY = process.env.REACT_APP_SUPABASE_KEY as string;
 const supabase: SupabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
-const Facilities = (props: Props) => {
+const Facilities = () => {
   const [hotels, setHotels] = useState<Hotel[]>([]);
-  const [error, setError] = useState<string | null>(null);
 
   const fetchData = async () => {
     try {
@@ -31,7 +29,6 @@ const Facilities = (props: Props) => {
       setHotels(data || []);
     } catch (err: any) {
       console.error("Fetch error: ", err.message);
-      setError("Failed to fetch data");
     }
   };
   useCallback(() => {

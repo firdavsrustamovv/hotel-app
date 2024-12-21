@@ -14,9 +14,7 @@ import aboutUsImg3 from "../images/aboutUsImg3.png";
 import { Link } from "react-router-dom";
 import Quality from "../components/Quality";
 
-type Props = {};
-
-const About = (props: Props) => {
+const About = () => {
   return (
     <Box>
       <Box

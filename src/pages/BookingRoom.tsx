@@ -25,8 +25,11 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { SupabaseClient, createClient } from "@supabase/supabase-js";
 import { useEffect, useState } from "react";
+import { startLoading, stopLoading } from "../slice/loaderSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../store/store";
+import Loader from "../components/Loader";
 
-type Props = {};
 interface IFormInput {
   name: string;
   lastName: string;
@@ -50,14 +53,16 @@ const SUPABASE_URL = process.env.REACT_APP_SUPABASE_URL as string;
 const SUPABASE_KEY = process.env.REACT_APP_SUPABASE_KEY as string;
 const supabase: SupabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-const BookingRoom = (props: Props) => {
+const BookingRoom = () => {
   const { register, handleSubmit } = useForm<IFormInput>();
   const [bookingRoom, setBookingRoom] = useState<IFormInput[]>([]);
+  const isLoading = useSelector((state: RootState) => state.loader.isLoading);
+  const dispatch = useDispatch();
 
   const onSubmit: SubmitHandler<IFormInput> = async (val) => {
     handleNext();
-
-    const { data, error } = await supabase
+    dispatch(startLoading());
+    const { data } = await supabase
       .from("bookingRoom")
       .insert([
         {
@@ -70,10 +75,10 @@ const BookingRoom = (props: Props) => {
           totalRoom: val.totalRoom,
           totalGuest: val.totalGuest,
           codeRefferal: val.codeRefferal,
-          // roomName: room?.title,
         },
       ])
       .select("*");
+    dispatch(stopLoading());
     setBookingRoom(data || []);
   };
   const navigate = useNavigate();
@@ -86,12 +91,13 @@ const BookingRoom = (props: Props) => {
   };
 
   const fetchData = async () => {
+    dispatch(startLoading());
     try {
       const { data, error } = await supabase
         .from("roomsForHotel")
         .select("*")
         .eq("id", id);
-
+      dispatch(stopLoading());
       if (error) {
         throw error;
       }
@@ -107,6 +113,7 @@ const BookingRoom = (props: Props) => {
 
   return (
     <Box>
+      {isLoading && <Loader />}
       <Box
         sx={{
           backgroundImage: `url(${roomBackground})`,

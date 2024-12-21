@@ -15,6 +15,10 @@ import { createClient, SupabaseClient } from "@supabase/supabase-js";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { startLoading, stopLoading } from "../../slice/loaderSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store/store";
+import Loader from "../Loader";
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
@@ -76,7 +80,8 @@ export default function SignUp() {
   const [name, setName] = useState<string>("");
   const navigate = useNavigate();
   const userToken = localStorage.getItem("token");
-
+  const isLoading = useSelector((state: RootState) => state.loader.isLoading);
+  const dispatch = useDispatch();
   const validateInputs = () => {
     let isValid = true;
 
@@ -116,16 +121,16 @@ export default function SignUp() {
     if (!validateInputs()) {
       return;
     }
-
+    dispatch(startLoading());
     try {
       const { data } = await supabase
         .from("usersList")
         .select("email")
         .eq("email", email)
         .single();
-
+      dispatch(stopLoading());
       if (data) {
-        toast.error("Your email is already registered");
+        toast.error("Sizning Emailingiz oldin ro'yxatdan o'tgan");
         return;
       }
       const { error: insertError } = await supabase
@@ -165,6 +170,7 @@ export default function SignUp() {
 
   return (
     <Box>
+      {isLoading && <Loader />}
       <CssBaseline enableColorScheme />
       <SignUpContainer direction="column" justifyContent="space-between">
         <Card variant="outlined">

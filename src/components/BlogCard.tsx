@@ -1,5 +1,4 @@
 import { Stack, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
 
 export interface Data {
   id?: number;
@@ -33,6 +32,7 @@ const BlogCard: React.FC<CardProps> = ({ data, link, fontSize }) => {
           <img
             src={`img/${item.img}`}
             alt={item.title}
+            loading="lazy"
             style={{
               width: "350px",
               height: "240px",

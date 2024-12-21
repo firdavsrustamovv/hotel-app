@@ -39,6 +39,7 @@ const DetailRoomCard: React.FC<CardProps> = ({ data, link, fontSize }) => {
             <img
               src={item.img}
               alt={item.title}
+              loading="lazy"
               style={{
                 width: "350px",
                 height: "240px",

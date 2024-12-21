@@ -22,9 +22,12 @@ import WifiIcon from "@mui/icons-material/Wifi";
 import TvIcon from "@mui/icons-material/Tv";
 import CoffeeMakerIcon from "@mui/icons-material/CoffeeMaker";
 import { SupabaseClient, createClient } from "@supabase/supabase-js";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import DetailRoomCard from "../components/DetailRoomCard";
-type Props = {};
+import { startLoading, stopLoading } from "../slice/loaderSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../store/store";
+import Loader from "../components/Loader";
 interface OtherRooms {
   id: number;
   infomation: string;
@@ -36,22 +39,24 @@ const SUPABASE_URL = process.env.REACT_APP_SUPABASE_URL as string;
 const SUPABASE_KEY = process.env.REACT_APP_SUPABASE_KEY as string;
 const supabase: SupabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-const DetailRooms = (props: Props) => {
+const DetailRooms = () => {
   const { id } = useParams<{ id: string }>();
   const [room, setRoom] = useState<any>([]);
   const [otherRoom, setOtherRoom] = useState<OtherRooms[]>([]);
   const [openDialog, setOpenDialog] = useState(false);
   const userToken = localStorage.getItem("token");
-
+  const isLoading = useSelector((state: RootState) => state.loader.isLoading);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const fetchData = async () => {
     try {
+      dispatch(startLoading());
       const { data, error } = await supabase
         .from("roomsForHotel")
         .select("*")
         .eq("id", id);
-
+      dispatch(stopLoading());
       if (error) {
         throw error;
       }
@@ -63,11 +68,12 @@ const DetailRooms = (props: Props) => {
   };
   const fetchOtherRoomData = async () => {
     try {
+      dispatch(startLoading());
       const { data, error } = await supabase
         .from("roomsForHotel")
         .select("*")
         .range(3, 5);
-
+      dispatch(stopLoading());
       if (error) {
         throw error;
       }
@@ -77,6 +83,10 @@ const DetailRooms = (props: Props) => {
       console.error("Fetch error: ", err.message);
     }
   };
+  useCallback(() => {
+    fetchData();
+    fetchOtherRoomData();
+  }, [room, otherRoom]);
   useEffect(() => {
     fetchData();
     fetchOtherRoomData();
@@ -113,6 +123,7 @@ const DetailRooms = (props: Props) => {
 
   return (
     <Box>
+      {isLoading && <Loader />}
       <Box
         sx={{
           backgroundImage: `url(${roomBackground})`,
@@ -182,6 +193,7 @@ const DetailRooms = (props: Props) => {
               <img
                 src={imgSrc}
                 alt={`detailRoom${index}`}
+                loading="lazy"
                 style={{
                   width: "100%",
                   height: "100%",

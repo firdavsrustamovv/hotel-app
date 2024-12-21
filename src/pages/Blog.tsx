@@ -5,10 +5,12 @@ import golf from "../images/gold.png";
 import imgForBlog from "../images/imgForBlog.png";
 import imgForBlog2 from "../images/imgForBlog2.png";
 import BlogCard from "../components/BlogCard";
-
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
 import { useEffect, useState, useCallback } from "react";
-type Props = {};
+import { startLoading, stopLoading } from "../slice/loaderSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../store/store";
+import Loader from "../components/Loader";
 interface Data {
   id?: number;
   img: string;
@@ -19,21 +21,22 @@ const SUPABASE_URL = process.env.REACT_APP_SUPABASE_URL as string;
 const SUPABASE_KEY = process.env.REACT_APP_SUPABASE_KEY as string;
 const supabase: SupabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-const Blog = (props: Props) => {
+const Blog = () => {
   const [blogs, setBlogs] = useState<Data[]>([]);
-  const [error, setError] = useState<string | null>(null);
+  const isLoading = useSelector((state: RootState) => state.loader.isLoading);
+  const dispatch = useDispatch();
 
   const fetchData = async () => {
+    dispatch(startLoading());
     try {
       const { data, error } = await supabase.from("blogForHotel").select("*");
-
+      dispatch(stopLoading());
       if (error) {
         throw error;
       }
       setBlogs(data || []);
     } catch (err: any) {
       console.error("Fetch error: ", err.message);
-      setError("Failed to fetch data");
     }
   };
   useCallback(() => {
@@ -44,6 +47,7 @@ const Blog = (props: Props) => {
   }, []);
   return (
     <Box>
+      {isLoading && <Loader />}
       <Box
         sx={{
           backgroundImage: `url(${blog})`,
