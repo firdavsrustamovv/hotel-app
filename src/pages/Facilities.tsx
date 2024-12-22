@@ -4,7 +4,10 @@ import facilities from "../images/facilities.png";
 import { Box, Stack, Container, Typography, Divider } from "@mui/material";
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
 import { useEffect, useState, useCallback } from "react";
-
+import { startLoading, stopLoading } from "../slice/loaderSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../store/store";
+import Loader from "../components/Loader";
 interface Hotel {
   id: number;
   name: string;
@@ -16,13 +19,16 @@ const SUPABASE_KEY = process.env.REACT_APP_SUPABASE_KEY as string;
 const supabase: SupabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
 const Facilities = () => {
   const [hotels, setHotels] = useState<Hotel[]>([]);
+  const isLoading = useSelector((state: RootState) => state.loader.isLoading);
+  const dispatch = useDispatch();
 
   const fetchData = async () => {
     try {
+      dispatch(startLoading());
       const { data, error } = await supabase
         .from("hotelFacilities")
         .select("*");
-
+      dispatch(stopLoading());
       if (error) {
         throw error;
       }
@@ -39,6 +45,7 @@ const Facilities = () => {
   }, []);
   return (
     <Box>
+      {isLoading && <Loader />}
       <Box
         sx={{
           backgroundImage: `url(${facilities})`,
@@ -82,7 +89,7 @@ const Facilities = () => {
             <Divider sx={{ marginTop: "40px", background: "black" }} />
           </Stack>
           <Stack mt={"50px"} height={"100%"}>
-            <FacilitiesCard data={hotels} links="" />
+            <FacilitiesCard data={hotels} />
           </Stack>
         </Box>
       </Container>

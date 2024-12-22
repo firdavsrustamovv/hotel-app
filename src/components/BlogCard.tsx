@@ -9,7 +9,7 @@ export interface Data {
 
 interface CardProps {
   data: Data[];
-  link: string;
+  link?: string;
   fontSize: string;
 }
 

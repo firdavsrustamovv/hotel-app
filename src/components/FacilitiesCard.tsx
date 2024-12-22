@@ -9,7 +9,7 @@ interface Data {
 }
 interface CardProps {
   data: Data[];
-  links: string;
+  links?: string;
 }
 
 const FacilitiesCard: React.FC<CardProps> = ({ data, links }) => {

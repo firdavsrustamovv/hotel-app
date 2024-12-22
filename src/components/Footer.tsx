@@ -19,7 +19,7 @@ const Footer = () => {
       >
         <Stack spacing={2} sx={{ flex: 1 }}>
           <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-            Zerra
+            Hotel-app
           </Typography>
           <Typography sx={{ fontSize: "14px" }}>
             2024 Uzbekiston
@@ -46,14 +46,17 @@ const Footer = () => {
             </Link>
           </Stack>
           <Stack spacing={2} sx={{ flex: 1 }}>
-            <Link style={{ fontSize: "14px" }} to={"/offers"}>
+            {/* <Link style={{ fontSize: "14px" }} to={"/offers"}>
               Takliflarimiz
-            </Link>
+            </Link> */}
             <Link style={{ fontSize: "14px" }} to={"/about"}>
               Biz haqimizda
             </Link>
             <Link style={{ fontSize: "14px" }} to={"/contact"}>
               Aloqa
+            </Link>
+            <Link style={{ fontSize: "14px" }} to={"/blog"}>
+              Blog
             </Link>
           </Stack>
         </Stack>
@@ -92,7 +95,7 @@ const Footer = () => {
           paddingTop: "20px",
         }}
       >
-        <Typography>©2023 Zerra. Barcha huquqlar himoyalangan</Typography>
+        <Typography>©2024 Hotel-App. Barcha huquqlar himoyalangan</Typography>
       </Box>
     </Box>
   );

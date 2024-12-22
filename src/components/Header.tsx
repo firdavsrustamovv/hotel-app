@@ -20,7 +20,7 @@ const pages = [
   { label: "Asosiy", path: "/" },
   { label: "Xonalar", path: "/rooms" },
   { label: "Qulayliklar", path: "/facilities" },
-  { label: "Takliflarimiz", path: "/offers" },
+  // { label: "Takliflarimiz", path: "/offers" },
   { label: "Biz haqimizda", path: "/about" },
   { label: "Blog", path: "/blog" },
   { label: "Aloqa", path: "/contact" },

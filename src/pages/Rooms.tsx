@@ -5,49 +5,10 @@ import premiumGrandDeluxeRoom from "../images/premiumGrandDeluxeRoom.png";
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
 import { useEffect, useState } from "react";
 import DetailRoomCard from "../components/DetailRoomCard";
-
-type Props = {};
-
-// export const blogData = [
-//   {
-//     id: 1,
-//     img: executiveRoom,
-//     title: "Ota-onalar uchun",
-//     infomation: "50 m² 2 yotoqxona 1 hammom va balkon",
-//   },
-//   {
-//     id: 2,
-//     img: juniorRoom,
-//     title: "Bollalar uchun",
-//     infomation: "50 m² 1 yotoqxona 1 hammom balkon",
-//   },
-//   {
-//     id: 3,
-//     img: grandRoom,
-//     title: "Katta oila uchun",
-//     infomation: "80 m² 2 yotoqxona 1 hammom balkon",
-//   },
-// ];
-// export const blogDataNewRooms = [
-//   {
-//     id: 4,
-//     img: executiveRoom2,
-//     title: "Lyuks xona",
-//     infomation: "50 m² 2 yotoqxona 1 hammom va balkon",
-//   },
-//   {
-//     id: 5,
-//     img: premiumRoom,
-//     title: "Premium xona",
-//     infomation: "50 m² 1 yotoqxona 1 hammom balkon",
-//   },
-//   {
-//     id: 6,
-//     img: premiumDeluxeRoom,
-//     title: "Premium Deluxe xona",
-//     infomation: "60 m² 1 yotoqxona 1 hammom balkon",
-//   },
-// ];
+import { startLoading, stopLoading } from "../slice/loaderSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../store/store";
+import Loader from "../components/Loader";
 interface Rooms {
   id: number;
   infomation: string;
@@ -58,18 +19,20 @@ const SUPABASE_URL = process.env.REACT_APP_SUPABASE_URL as string;
 const SUPABASE_KEY = process.env.REACT_APP_SUPABASE_KEY as string;
 const supabase: SupabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-const Rooms = (props: Props) => {
+const Rooms = () => {
   const [rooms, setRooms] = useState<Rooms[]>([]);
   const [nextRooms, setNextRooms] = useState<Rooms[]>([]);
-  const [error, setError] = useState<string | null>(null);
+  const isLoading = useSelector((state: RootState) => state.loader.isLoading);
+  const dispatch = useDispatch();
 
   const fetchData = async () => {
     try {
+      dispatch(startLoading());
       const { data, error } = await supabase
         .from("roomsForHotel")
         .select("*")
         .range(0, 2);
-
+      dispatch(stopLoading());
       if (error) {
         throw error;
       }
@@ -77,16 +40,16 @@ const Rooms = (props: Props) => {
       setRooms(data || []);
     } catch (err: any) {
       console.error("Fetch error: ", err.message);
-      setError("Failed to fetch data");
     }
   };
   const fetchNextData = async () => {
     try {
+      dispatch(startLoading());
       const { data, error } = await supabase
         .from("roomsForHotel")
         .select("*")
         .range(3, 5);
-
+      dispatch(stopLoading());
       if (error) {
         throw error;
       }
@@ -94,7 +57,6 @@ const Rooms = (props: Props) => {
       setNextRooms(data || []);
     } catch (err: any) {
       console.error("Fetch error: ", err.message);
-      setError("Failed to fetch data");
     }
   };
   useEffect(() => {
@@ -103,6 +65,7 @@ const Rooms = (props: Props) => {
   }, []);
   return (
     <Box>
+      {isLoading && <Loader />}
       <Box
         sx={{
           backgroundImage: `url(${roomBackground})`,
@@ -207,7 +170,11 @@ const Rooms = (props: Props) => {
         }}
       >
         <Container>
-          <DetailRoomCard data={nextRooms} link={`/rooms`} fontSize="20px" />
+          <DetailRoomCard
+            data={nextRooms}
+            link={`/rooms/booking`}
+            fontSize="20px"
+          />
         </Container>
       </Box>
     </Box>

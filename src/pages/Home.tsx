@@ -23,7 +23,11 @@ import FacilitiesCard from "../components/FacilitiesCard";
 import { Link, useNavigate } from "react-router-dom";
 import BlogCard from "../components/BlogCard";
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
+import { startLoading, stopLoading } from "../slice/loaderSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../store/store";
+import Loader from "../components/Loader";
 
 const itemData = [
   { img: image1 },
@@ -55,20 +59,20 @@ const supabase: SupabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
 const Home = () => {
   const [hotels, setHotels] = useState<Hotel[]>([]);
   const [blogs, setBlog] = useState<Blog[]>([]);
-  const [error, setError] = useState<string | null>(null);
-
   const { register, handleSubmit } = useForm<IFormInput>();
   const navigate = useNavigate();
-
+  const isLoading = useSelector((state: RootState) => state.loader.isLoading);
+  const dispatch = useDispatch();
   const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data);
 
   const fetchData = async () => {
     try {
+      dispatch(startLoading());
       const { data, error } = await supabase
         .from("hotelFacilities")
         .select("*")
         .limit(3);
-
+      dispatch(stopLoading());
       if (error) {
         throw error;
       }
@@ -76,17 +80,16 @@ const Home = () => {
       setHotels(data || []);
     } catch (err: any) {
       console.error("Fetch error: ", err.message);
-      setError("Failed to fetch data");
     }
   };
   const fetchBlogData = async () => {
     try {
+      dispatch(startLoading());
       const { data, error } = await supabase
         .from("blogForHotel")
         .select("*")
         .limit(3);
-      console.log(data);
-
+      dispatch(stopLoading());
       if (error) {
         throw error;
       }
@@ -94,9 +97,12 @@ const Home = () => {
       setBlog(data || []);
     } catch (err: any) {
       console.error("Fetch error: ", err.message);
-      setError("Failed to fetch data");
     }
   };
+  useCallback(() => {
+    fetchData();
+    fetchBlogData();
+  }, [hotels, blogs]);
   useEffect(() => {
     fetchData();
     fetchBlogData();
@@ -104,6 +110,7 @@ const Home = () => {
 
   return (
     <Box>
+      {isLoading && <Loader />}
       <Box
         sx={{
           backgroundImage: `url(${BackGroundPhoto})`,
@@ -298,7 +305,7 @@ const Home = () => {
             </Stack>
             <Divider sx={{ marginTop: "20px" }} />
             <Box mt={5} height={"auto"}>
-              <BlogCard data={blogs} link="/blog" fontSize="15px" />
+              <BlogCard data={blogs} fontSize="15px" />
             </Box>
           </Box>
         </Box>
