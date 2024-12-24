@@ -59,28 +59,6 @@ const BookingRoom = () => {
   const isLoading = useSelector((state: RootState) => state.loader.isLoading);
   const dispatch = useDispatch();
 
-  const onSubmit: SubmitHandler<IFormInput> = async (val) => {
-    handleNext();
-    dispatch(startLoading());
-    const { data } = await supabase
-      .from("bookingRoom")
-      .insert([
-        {
-          name: val.name,
-          lastName: val.lastName,
-          email: val.email,
-          phoneNumber: val.phoneNumber,
-          checkIn: val.checkIn,
-          checkOut: val.checkOut,
-          totalRoom: val.totalRoom,
-          totalGuest: val.totalGuest,
-          codeRefferal: val.codeRefferal,
-        },
-      ])
-      .select("*");
-    dispatch(stopLoading());
-    setBookingRoom(data || []);
-  };
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const [room, setRoom] = useState<any>([]);
@@ -106,6 +84,30 @@ const BookingRoom = () => {
     } catch (err: any) {
       console.error("Fetch error: ", err.message);
     }
+  };
+  const onSubmit: SubmitHandler<IFormInput> = async (val) => {
+    handleNext();
+    dispatch(startLoading());
+    const { data } = await supabase
+      .from("bookingRoom")
+      .insert([
+        {
+          name: val.name,
+          lastName: val.lastName,
+          email: val.email,
+          phoneNumber: val.phoneNumber,
+          checkIn: val.checkIn,
+          checkOut: val.checkOut,
+          totalRoom: val.totalRoom,
+          totalGuest: val.totalGuest,
+          codeRefferal: val.codeRefferal,
+          room_name: room.title,
+          img: room.img,
+        },
+      ])
+      .select("*");
+    dispatch(stopLoading());
+    setBookingRoom(data || []);
   };
   useEffect(() => {
     fetchData();

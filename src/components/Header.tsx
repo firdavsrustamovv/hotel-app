@@ -4,7 +4,6 @@ import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -14,13 +13,21 @@ import { Stack } from "@mui/material";
 import Backdrop from "@mui/material/Backdrop";
 import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
+import EmailIcon from "@mui/icons-material/Email";
+import PersonIcon from "@mui/icons-material/Person";
+import IconButton from "@mui/material/IconButton";
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
+import CardForBookedRoom from "./CardForBookedRoom";
+import { blue } from "@mui/material/colors";
 
 const pages = [
   { label: "Asosiy", path: "/" },
   { label: "Xonalar", path: "/rooms" },
   { label: "Qulayliklar", path: "/facilities" },
-  // { label: "Takliflarimiz", path: "/offers" },
   { label: "Biz haqimizda", path: "/about" },
   { label: "Blog", path: "/blog" },
   { label: "Aloqa", path: "/contact" },
@@ -31,12 +38,21 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: 900,
-  height: 500,
+  maxHeight: "80vh",
+  overflowY: "auto",
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
 };
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: blue[500],
+    },
+  },
+});
 interface IFormInput {
   name: string;
   lastName: string;
@@ -47,6 +63,8 @@ interface IFormInput {
   totalRoom: string;
   totalGuest: string;
   codeRefferal: string;
+  room_name: string;
+  img: string;
 }
 
 const SUPABASE_URL = process.env.REACT_APP_SUPABASE_URL as string;
@@ -199,34 +217,97 @@ const Header = () => {
             >
               <Fade in={open}>
                 <Box sx={style}>
+                  {/* <Typography
+                    id="transition-modal-title"
+                    variant="h6"
+                    component="h2"
+                  >
+                    <Stack direction="row" alignItems="center" gap={1}>
+                      <PersonIcon />
+                      {name}
+                    </Stack>
+                  </Typography>
                   <Typography
                     id="transition-modal-title"
                     variant="h6"
                     component="h2"
                   >
-                    "ism": {name}
-                  </Typography>
-                  <Typography
-                    id="transition-modal-title"
-                    variant="h6"
-                    component="h2"
-                  >
-                    "email": {email}
-                  </Typography>
-                  <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-                    Bron qilingan sana "Kirish"{" "}
-                    {filtredRooms.map((val) => val.checkIn)}
-                  </Typography>
-                  <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-                    Bron qilingan sana "Chiqish"{" "}
-                    {filtredRooms.map((val) => val.checkOut)}
-                  </Typography>
-                  <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-                    Xonalar soni {filtredRooms.map((val) => val.totalRoom)}
-                  </Typography>
-                  <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-                    Mexmonlar soni {filtredRooms.map((val) => val.totalGuest)}
-                  </Typography>
+                    <Stack direction="row" alignItems="center" gap={1}>
+                      <AlternateEmailIcon />
+                      {email}
+                    </Stack>
+                  </Typography> */}
+                  <ThemeProvider theme={theme}>
+                    <Card
+                      sx={{
+                        maxWidth: 400,
+                        margin: "auto",
+                        boxShadow: 3,
+                        transition: "all 0.3s",
+                        "&:hover": {
+                          transform: "translateY(-4px)",
+                          boxShadow: 6,
+                        },
+                      }}
+                    >
+                      <CardContent>
+                        <Box
+                          sx={{ display: "flex", alignItems: "center", gap: 2 }}
+                        >
+                          <Avatar
+                            sx={{
+                              width: 64,
+                              height: 64,
+                              bgcolor: "primary.main",
+                              boxShadow: 2,
+                              fontSize: "1.5rem",
+                            }}
+                          >
+                            {name?.charAt(0)}
+                          </Avatar>
+                          <Box sx={{ flexGrow: 1 }}>
+                            <Box
+                              sx={{
+                                display: "flex",
+                                alignItems: "center",
+                                gap: 1,
+                                mb: 1,
+                              }}
+                            >
+                              <PersonIcon color="action" />
+                              <Typography variant="h6" component="h2">
+                                {name}
+                              </Typography>
+                            </Box>
+                            <Box
+                              sx={{
+                                display: "flex",
+                                alignItems: "center",
+                                gap: 1,
+                              }}
+                            >
+                              <EmailIcon color="action" />
+                              <Typography
+                                variant="body2"
+                                color="text.secondary"
+                              >
+                                {email}
+                              </Typography>
+                            </Box>
+                          </Box>
+                        </Box>
+                      </CardContent>
+                    </Card>
+                  </ThemeProvider>
+                  <Stack mt={2} alignItems={"center"}>
+                    <Typography fontSize={25}>
+                      Bron qilingan xonalar haqida ma'lumot
+                    </Typography>
+                  </Stack>
+                  <hr />
+                  <Box mt={2}>
+                    <CardForBookedRoom data={filtredRooms} />
+                  </Box>
                 </Box>
               </Fade>
             </Modal>

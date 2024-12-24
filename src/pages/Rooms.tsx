@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import roomBackground from "../images/room.png";
 import premiumGrandDeluxeRoom from "../images/premiumGrandDeluxeRoom.png";
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import DetailRoomCard from "../components/DetailRoomCard";
 import { startLoading, stopLoading } from "../slice/loaderSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -59,6 +59,10 @@ const Rooms = () => {
       console.error("Fetch error: ", err.message);
     }
   };
+  useCallback(() => {
+    fetchData();
+    fetchNextData();
+  }, [rooms, nextRooms]);
   useEffect(() => {
     fetchData();
     fetchNextData();
@@ -170,13 +174,10 @@ const Rooms = () => {
         }}
       >
         <Container>
-          <DetailRoomCard
-            data={nextRooms}
-            link={`/rooms/booking`}
-            fontSize="20px"
-          />
+          <DetailRoomCard data={nextRooms} link={`/rooms`} fontSize="20px" />
         </Container>
       </Box>
+      {/* <Outlet /> */}
     </Box>
   );
 };

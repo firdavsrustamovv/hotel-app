@@ -1,5 +1,4 @@
 import { Stack, Box, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
 
 interface Data {
   id: number;
@@ -12,7 +11,7 @@ interface CardProps {
   links?: string;
 }
 
-const FacilitiesCard: React.FC<CardProps> = ({ data, links }) => {
+const FacilitiesCard: React.FC<CardProps> = ({ data }) => {
   return (
     <Box>
       <Stack direction={"column"} flexWrap={"wrap"}>

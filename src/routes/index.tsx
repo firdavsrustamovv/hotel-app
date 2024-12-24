@@ -11,7 +11,7 @@ import Facilities from "../pages/Facilities";
 
 type RouteType = {
   path?: string;
-  element: JSX.Element;
+  element?: JSX.Element;
   index?: boolean;
   children?: RouteType[];
 };
