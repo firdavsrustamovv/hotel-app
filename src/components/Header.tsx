@@ -16,7 +16,6 @@ import Fade from "@mui/material/Fade";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import EmailIcon from "@mui/icons-material/Email";
 import PersonIcon from "@mui/icons-material/Person";
 import IconButton from "@mui/material/IconButton";
@@ -217,26 +216,6 @@ const Header = () => {
             >
               <Fade in={open}>
                 <Box sx={style}>
-                  {/* <Typography
-                    id="transition-modal-title"
-                    variant="h6"
-                    component="h2"
-                  >
-                    <Stack direction="row" alignItems="center" gap={1}>
-                      <PersonIcon />
-                      {name}
-                    </Stack>
-                  </Typography>
-                  <Typography
-                    id="transition-modal-title"
-                    variant="h6"
-                    component="h2"
-                  >
-                    <Stack direction="row" alignItems="center" gap={1}>
-                      <AlternateEmailIcon />
-                      {email}
-                    </Stack>
-                  </Typography> */}
                   <ThemeProvider theme={theme}>
                     <Card
                       sx={{

@@ -177,7 +177,6 @@ const Rooms = () => {
           <DetailRoomCard data={nextRooms} link={`/rooms`} fontSize="20px" />
         </Container>
       </Box>
-      {/* <Outlet /> */}
     </Box>
   );
 };
