@@ -40,6 +40,7 @@ interface IFormInput {
   totalRoom: string;
   totalGuest: string;
   codeRefferal: string;
+  price: string;
 }
 interface BookingRoom {
   id: number;
@@ -103,6 +104,7 @@ const BookingRoom = () => {
           codeRefferal: val.codeRefferal,
           room_name: room.title,
           img: room.img,
+          price: room.price,
         },
       ])
       .select("*");
@@ -190,6 +192,9 @@ const BookingRoom = () => {
               <RoomCard
                 imageUrl={room?.img || "default img"}
                 title={room?.title || "default title"}
+                price={room?.price || 500}
+                size={room?.size || 60}
+                beds={room?.beds || 1}
               />
             </Stack>
             <Stack>
@@ -391,7 +396,7 @@ const BookingRoom = () => {
                         py: 1.5,
                       }}
                     >
-                      Next
+                      Keyingisi
                     </Button>
                   </Paper>
                 )}
@@ -408,7 +413,7 @@ const BookingRoom = () => {
                   >
                     <Stack direction={"column"} gap={"8px"}>
                       <Stack direction={"row"} justifyContent={"space-between"}>
-                        <Typography>Full Name</Typography>
+                        <Typography>To'liq Ism</Typography>
                         <Stack direction={"row"} gap={"5px"}>
                           <Typography>
                             {bookingRoom.map((data) => data.lastName)}
@@ -419,41 +424,45 @@ const BookingRoom = () => {
                         </Stack>
                       </Stack>
                       <Stack direction={"row"} justifyContent={"space-between"}>
-                        <Typography>Tootal Room</Typography>
+                        <Typography>Xonalar soni</Typography>
                         <Typography>
                           {bookingRoom.map((data) => data.totalRoom)}
                         </Typography>
                       </Stack>
                       <Stack direction={"row"} justifyContent={"space-between"}>
-                        <Typography>Tootal Guest</Typography>
+                        <Typography>Mexmonlar soni</Typography>
                         <Typography>
                           {bookingRoom.map((data) => data.totalGuest)}
                         </Typography>
                       </Stack>
                       <Stack direction={"row"} justifyContent={"space-between"}>
-                        <Typography>Check In</Typography>
+                        <Typography>Kirish vaqti</Typography>
                         <Typography>
                           {bookingRoom.map((data) => data.checkIn)}
                         </Typography>
                       </Stack>
                       <Stack direction={"row"} justifyContent={"space-between"}>
-                        <Typography>Check Out</Typography>
+                        <Typography>Chiqish vaqti</Typography>
                         <Typography>
                           {bookingRoom.map((data) => data.checkOut)}
                         </Typography>
                       </Stack>
                       <Stack direction={"row"} justifyContent={"space-between"}>
-                        <Typography>Price</Typography>
-                        <Typography>500$</Typography>
+                        <Typography>Narx</Typography>
+                        <Typography>
+                          {bookingRoom.map((data) => data.price)}$
+                        </Typography>
                       </Stack>
                       <Stack direction={"row"} justifyContent={"space-between"}>
-                        <Typography>Discount</Typography>
+                        <Typography>Chegirma</Typography>
                         <Typography>-</Typography>
                       </Stack>
                       <Divider />
                       <Stack direction={"row"} justifyContent={"space-between"}>
-                        <Typography>Tootal Price</Typography>
-                        <Typography>500$</Typography>
+                        <Typography>Jami narx</Typography>
+                        <Typography>
+                          {bookingRoom.map((data) => data.price)}$
+                        </Typography>
                       </Stack>
                     </Stack>
                     <Button
@@ -472,7 +481,7 @@ const BookingRoom = () => {
                         py: 1.5,
                       }}
                     >
-                      Next
+                      Keyingisi
                     </Button>
                   </Paper>
                 )}

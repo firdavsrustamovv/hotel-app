@@ -180,6 +180,18 @@ const Header = () => {
               anchorOrigin={{ vertical: "top", horizontal: "left" }}
               transformOrigin={{ vertical: "top", horizontal: "left" }}
             >
+              {token && (
+                <Avatar
+                  onClick={handleOpen}
+                  src="/broken-image.jpg"
+                  sx={{
+                    cursor: "pointer",
+                    display: "flex",
+                    margin: "auto",
+                    padding: "3px",
+                  }}
+                />
+              )}
               {pages.map((page) => (
                 <MenuItem
                   key={page.label}
@@ -190,6 +202,19 @@ const Header = () => {
                   <Typography textAlign="center">{page.label}</Typography>
                 </MenuItem>
               ))}
+
+              <Button
+                onClick={handleAuth}
+                sx={{
+                  color: "black",
+                  border: "1px solid black",
+                  width: "70%",
+                  display: "block",
+                  margin: "auto",
+                }}
+              >
+                {token ? "Chiqish" : "Kirish"}
+              </Button>
             </Menu>
           </Box>
 

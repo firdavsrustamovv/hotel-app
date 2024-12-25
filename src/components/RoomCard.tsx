@@ -22,9 +22,9 @@ interface RoomCardProps {
 
 export default function RoomCard({
   title,
-  price = 500,
-  size = 60,
-  beds = 1,
+  price,
+  size,
+  beds,
   bathrooms = 1,
   hasBalcony = true,
   imageUrl,
