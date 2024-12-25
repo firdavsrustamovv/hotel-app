@@ -38,7 +38,6 @@ const itemData = [
 
 interface IFormInput {
   type: string;
-  rooms: string;
 }
 interface Hotel {
   id: number;
@@ -63,7 +62,7 @@ const Home = () => {
   const navigate = useNavigate();
   const isLoading = useSelector((state: RootState) => state.loader.isLoading);
   const dispatch = useDispatch();
-  const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data.type);
 
   const fetchData = async () => {
     try {
@@ -162,7 +161,7 @@ const Home = () => {
             <Box sx={{ minWidth: 120 }}>
               <FormControl fullWidth>
                 <InputLabel variant="standard" htmlFor="uncontrolled-native">
-                  Xona Turi
+                  Bizda quydagi xonalar bor
                 </InputLabel>
                 <NativeSelect
                   {...register("type")}
@@ -172,29 +171,18 @@ const Home = () => {
                     id: "uncontrolled-native",
                   }}
                 >
-                  <option value="Oddiy">Oddiy</option>
-                  <option value="O'rtacha">O'rtacha</option>
-                  <option value="Yaxshi">Yaxshi</option>
-                </NativeSelect>
-              </FormControl>
-            </Box>
-
-            <Box sx={{ minWidth: 120 }}>
-              <FormControl fullWidth>
-                <InputLabel variant="standard" htmlFor="uncontrolled-native">
-                  Xonalar
-                </InputLabel>
-                <NativeSelect
-                  {...register("rooms")}
-                  defaultValue="1kishilik"
-                  inputProps={{
-                    name: "rooms",
-                    id: "uncontrolled-native",
-                  }}
-                >
-                  <option value="1kishilik">1 kishilik</option>
-                  <option value="2kishilik">2 kishilik</option>
-                  <option value="3kishilik">3 kishilik</option>
+                  <option value="Ota-onalar uchun">
+                    Ota-onalar uchun xona
+                  </option>
+                  <option value="Bollalar uchun">Bollalar uchun xona</option>
+                  <option value="Katta oila uchun">
+                    Katta oila uchun xona
+                  </option>
+                  <option value="Lyuks xona">Lyuks xona</option>
+                  <option value="Premium xona">Premium xona</option>
+                  <option value="Premium Deluxe xona">
+                    Premium Deluxe xona
+                  </option>
                 </NativeSelect>
               </FormControl>
             </Box>
@@ -205,7 +193,7 @@ const Home = () => {
               variant="contained"
               type="submit"
             >
-              Qidirish
+              XONALAR
             </Button>
           </Stack>
         </Stack>
