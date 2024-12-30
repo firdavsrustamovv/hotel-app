@@ -73,7 +73,7 @@ const About = () => {
         <Stack
           justifyContent={"center"}
           mt={"100px"}
-          height={"300px"}
+          height={"auto"}
           sx={{ backgroundColor: "black" }}
         >
           <Quality />

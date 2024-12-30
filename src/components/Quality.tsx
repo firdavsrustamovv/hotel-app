@@ -1,36 +1,38 @@
-import {
-  Stack,
-  Box,
-  Typography,
-  Divider,
-  Rating,
-  Container,
-} from "@mui/material";
+import { Stack, Typography, Divider, Rating, Container } from "@mui/material";
 
-type Props = {};
-
-const Quality = (props: Props) => {
+const Quality = () => {
   return (
     <Container>
-      <Stack direction={"row"} justifyContent={"space-between"} gap={2}>
-        <Stack direction={"column"}>
-          <Stack>
-            <Typography variant="h6" color="white">
-              Har doim eng yaxshi xizmat va sifatga ega mehmonxonalar
-            </Typography>
-            <Divider color="white" sx={{ marginTop: "20px" }} />
-          </Stack>
-          <Stack mt={"20px"}>
-            <Rating
-              sx={{ fontSize: "40px" }}
-              name="half-rating-read"
-              defaultValue={2.5}
-              precision={5}
-              readOnly
-            />
-            <Typography color="white" fontSize={"13px"}>
-              Besh yulduzli mehmonxonalar
-            </Typography>
+      <Stack
+        direction={{ xs: "column", md: "row" }}
+        justifyContent={"space-between"}
+        padding={5}
+        gap={2}
+      >
+        <Stack direction={{ xs: "row", md: "column" }} gap={{ xs: 5, md: 1 }}>
+          <Stack direction={{ xs: "row", md: "column" }}>
+            <Stack>
+              <Typography
+                variant="h6"
+                color="white"
+                sx={{ fontSize: { xs: "25px", md: "30px" } }}
+              >
+                Har doim eng yaxshi xizmat va sifatga ega mehmonxonalar
+              </Typography>
+              <Divider color="white" sx={{ marginTop: "20px" }} />
+              <Stack mt={"20px"}>
+                <Rating
+                  sx={{ fontSize: { xs: "30px", md: "40px" } }}
+                  name="half-rating-read"
+                  defaultValue={2.5}
+                  precision={5}
+                  readOnly
+                />
+                <Typography color="white" fontSize={"13px"}>
+                  Besh yulduzli mehmonxonalar
+                </Typography>
+              </Stack>
+            </Stack>
           </Stack>
         </Stack>
         <Stack direction={"row"} gap={2}>
@@ -40,8 +42,8 @@ const Quality = (props: Props) => {
             sx={{
               border: "1px solid white",
               borderRadius: "50%",
-              width: "200px",
-              height: "200px",
+              width: { xs: "100px", md: "200px" },
+              height: { xs: "100px", md: "200px" },
             }}
           >
             <Stack
@@ -49,10 +51,19 @@ const Quality = (props: Props) => {
               justifyContent={"center"}
               alignItems={"center"}
             >
-              <Typography variant="h3" color="white">
+              <Typography
+                variant="h3"
+                color="white"
+                sx={{ fontSize: { xs: "20px", md: "50px" } }}
+              >
                 100+
               </Typography>
-              <Typography color="white">Qulay xonalar</Typography>
+              <Typography
+                sx={{ fontSize: { xs: "10px", md: "20px" } }}
+                color="white"
+              >
+                Qulay xonalar
+              </Typography>
             </Stack>
           </Stack>
           <Stack
@@ -61,8 +72,8 @@ const Quality = (props: Props) => {
             sx={{
               border: "1px solid white",
               borderRadius: "50%",
-              width: "200px",
-              height: "200px",
+              width: { xs: "100px", md: "200px" },
+              height: { xs: "100px", md: "200px" },
             }}
           >
             <Stack
@@ -70,10 +81,19 @@ const Quality = (props: Props) => {
               justifyContent={"center"}
               alignItems={"center"}
             >
-              <Typography variant="h3" color="white">
+              <Typography
+                variant="h3"
+                color="white"
+                sx={{ fontSize: { xs: "20px", md: "50px" } }}
+              >
                 5M+
               </Typography>
-              <Typography color="white">Baxtli mijozlar</Typography>
+              <Typography
+                color="white"
+                sx={{ fontSize: { xs: "10px", md: "20px" } }}
+              >
+                Baxtli mijozlar
+              </Typography>
             </Stack>
           </Stack>
           <Stack
@@ -82,8 +102,8 @@ const Quality = (props: Props) => {
             sx={{
               border: "1px solid white",
               borderRadius: "50%",
-              width: "200px",
-              height: "200px",
+              width: { xs: "100px", md: "200px" },
+              height: { xs: "100px", md: "200px" },
             }}
           >
             <Stack
@@ -91,10 +111,19 @@ const Quality = (props: Props) => {
               justifyContent={"center"}
               alignItems={"center"}
             >
-              <Typography variant="h3" color="white">
+              <Typography
+                variant="h3"
+                color="white"
+                sx={{ fontSize: { xs: "20px", md: "50px" } }}
+              >
                 23+
               </Typography>
-              <Typography color="white">Sertifikatlar</Typography>
+              <Typography
+                color="white"
+                sx={{ fontSize: { xs: "10px", md: "20px" } }}
+              >
+                Sertifikatlar
+              </Typography>
             </Stack>
           </Stack>
         </Stack>

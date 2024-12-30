@@ -130,45 +130,56 @@ const Home = () => {
         >
           <Container maxWidth="md">
             <Typography
-              variant="h2"
+              variant="h3"
               sx={{
                 color: "white",
                 fontWeight: "bold",
                 textShadow: "0 4px 8px rgba(0, 0, 0, 0.6)",
                 mb: 2,
+                fontSize: { xs: "50px", md: "60px" },
               }}
             >
               Eng qulay joyni topishga yordam beradi
             </Typography>
           </Container>
+
           <Stack
             component="form"
             onSubmit={handleSubmit(onSubmit)}
-            direction={"row"}
-            justifyContent={"center"}
-            flexWrap={"wrap"}
-            mt={"60px"}
-            gap={4}
+            direction={{ xs: "column", sm: "row" }}
+            justifyContent="space-between"
+            alignItems="center"
+            gap={{ xs: 2, sm: 3 }}
             sx={{
-              display: "flex",
               backgroundColor: "white",
-              maxWidth: "500px",
-              width: "100%",
-              borderRadius: "10px",
+              marginTop: "20px",
+              maxWidth: "450px",
+              width: "80%",
+              borderRadius: "12px",
+              padding: "10px 25px",
+              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
             }}
-            padding={2}
           >
-            <Box sx={{ minWidth: 120 }}>
+            <Box
+              sx={{
+                width: "100%",
+                maxWidth: "400px",
+              }}
+            >
               <FormControl fullWidth>
-                <InputLabel variant="standard" htmlFor="uncontrolled-native">
-                  Bizda quydagi xonalar bor
+                <InputLabel variant="filled" htmlFor="type-select">
+                  Bizdagi mavjud xonalar
                 </InputLabel>
                 <NativeSelect
                   {...register("type")}
                   defaultValue="Oddiy"
                   inputProps={{
                     name: "type",
-                    id: "uncontrolled-native",
+                    id: "type-select",
+                  }}
+                  sx={{
+                    fontSize: { xs: "14px", sm: "16px" },
+                    padding: "8px 12px",
                   }}
                 >
                   <option value="Ota-onalar uchun">
@@ -188,7 +199,19 @@ const Home = () => {
             </Box>
 
             <Button
-              sx={{ backgroundColor: "black" }}
+              sx={{
+                backgroundColor: "black",
+                color: "white",
+                fontSize: { xs: "14px", sm: "16px" },
+                padding: "8px 16px",
+                borderRadius: "8px",
+                textTransform: "none",
+                width: { xs: "100%", sm: "auto", md: "150px" },
+                maxWidth: "120px",
+                ":hover": {
+                  backgroundColor: "gray",
+                },
+              }}
               onClick={() => navigate("/rooms")}
               variant="contained"
               type="submit"
@@ -202,17 +225,38 @@ const Home = () => {
       <Container>
         <Box>
           <Stack
-            mt={"100px"}
-            direction={"row"}
-            justifyContent={"space-between"}
+            mt={{ xs: "40px", sm: "60px", md: "100px" }}
+            direction={{ xs: "column", sm: "row" }}
+            justifyContent={{ xs: "center", sm: "space-between" }}
+            alignItems={{ xs: "center", sm: "flex-start" }}
+            gap={{ xs: 2, sm: 4 }}
+            sx={{
+              padding: { xs: "16px", sm: "24px" },
+            }}
           >
-            <Typography variant="h4">
+            <Typography
+              variant="h4"
+              sx={{
+                fontSize: { xs: "18px", sm: "24px", md: "40px" },
+                textAlign: { xs: "center", sm: "left" },
+                color: "#191818",
+              }}
+            >
               Eng yaxshi jozibasi bilan unutilmas dam olishdan rohatlaning
             </Typography>
-            <Typography variant="h5">Eng yaxshi mehmonxonalar bizda</Typography>
+            <Typography
+              variant="h5"
+              sx={{
+                fontSize: { xs: "16px", sm: "20px", md: "28px" },
+                textAlign: { xs: "center", sm: "left" },
+              }}
+              color="#7A7A7A"
+            >
+              Eng yaxshi mehmonxonalar bizda
+            </Typography>
           </Stack>
         </Box>
-        <Box mt={"100px"}>
+        <Box mt={"40px"}>
           <ImageList
             variant="masonry"
             gap={9}
@@ -251,7 +295,7 @@ const Home = () => {
       <Stack
         justifyContent={"center"}
         mt={"100px"}
-        height={"300px"}
+        height={"auto"}
         sx={{ backgroundColor: "black" }}
       >
         <Quality />
@@ -262,8 +306,12 @@ const Home = () => {
             direction={"row"}
             alignItems={"center"}
             justifyContent={"space-between"}
+            gap={2}
           >
-            <Typography variant="h4">
+            <Typography
+              variant="h4"
+              sx={{ fontSize: { xs: "25px", md: "30px" } }}
+            >
               To'liq va eng sifatli imkoniyatlardan rohatlaning
             </Typography>
 
@@ -293,7 +341,7 @@ const Home = () => {
             </Stack>
             <Divider sx={{ marginTop: "20px" }} />
             <Box mt={5} height={"auto"}>
-              <BlogCard data={blogs} fontSize="15px" />
+              <BlogCard data={blogs} fontSize="14px" />
             </Box>
           </Box>
         </Box>

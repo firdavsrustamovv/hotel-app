@@ -13,39 +13,48 @@ interface CardProps {
 
 const FacilitiesCard: React.FC<CardProps> = ({ data }) => {
   return (
-    <Box>
-      <Stack direction={"column"} flexWrap={"wrap"}>
-        <Stack gap={5}>
-          {data.map((iteam) => (
-            <Stack
-              direction={"row"}
-              gap={"80px"}
-              sx={{
-                transition: "transform 0.3s, box-shadow 0.3s",
+    <Box sx={{ p: 2 }}>
+      <Stack gap={5}>
+        {data.map((item) => (
+          <Stack
+            key={item.id}
+            direction={{ xs: "column", md: "row" }}
+            gap={4}
+            alignItems={{ xs: "center", md: "flex-start" }}
+            justifyContent={{ xs: "center", md: "space-between" }}
+            sx={{
+              transition: "transform 0.3s, box-shadow 0.3s",
+              borderRadius: "8px",
+              padding: "16px",
+              "&:hover": {
+                transform: "scale(1.02)",
+                boxShadow: "0 4px 15px rgba(0, 0, 0, 0.2)",
+              },
+            }}
+          >
+            <img
+              src={`img/${item.img}`}
+              alt={item.title}
+              loading="lazy"
+              style={{
+                width: "100%",
+                maxWidth: "400px",
+                height: "auto",
                 borderRadius: "8px",
-                "&:hover": {
-                  transform: "scale(1.02)",
-                  boxShadow: "0 4px 15px rgba(0, 0, 0, 0.2)",
-                },
               }}
+            />
+            <Stack
+              gap={3}
+              textAlign={{ xs: "center", md: "left" }}
+              alignSelf="center"
             >
-              <img
-                src={`img/${iteam.img}`}
-                alt={iteam.title}
-                loading="lazy"
-                style={{
-                  width: "420px",
-                  height: "100%",
-                  borderRadius: "8px",
-                }}
-              />
-              <Stack gap={3} alignSelf={"center"}>
-                <Typography variant="h4">{iteam.name}</Typography>
-                <Typography variant="h6">{iteam.title}</Typography>
-              </Stack>
+              <Typography variant="h4">{item.name}</Typography>
+              <Typography variant="h6" color="text.secondary">
+                {item.title}
+              </Typography>
             </Stack>
-          ))}
-        </Stack>
+          </Stack>
+        ))}
       </Stack>
     </Box>
   );
