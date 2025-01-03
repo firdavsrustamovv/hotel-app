@@ -53,6 +53,7 @@ const ContactUs = () => {
                 fontWeight: "bold",
                 textShadow: "0 4px 8px rgba(0, 0, 0, 0.6)",
                 mb: 2,
+                fontSize: { xs: "h4", sm: "h3", md: "h2" }, // responsive font size
               }}
             >
               Aloqa
@@ -73,7 +74,8 @@ const ContactUs = () => {
                 alignItems: "center",
                 backgroundColor: "#121212",
                 padding: "20px",
-                width: "1000px",
+                width: "100%",
+                overflow: "hidden",
               }}
             >
               <Box
@@ -95,6 +97,7 @@ const ContactUs = () => {
                     color: "#fff",
                     marginBottom: "20px",
                     textAlign: "center",
+                    fontSize: { xs: "h5", sm: "h4" },
                   }}
                 >
                   Biz bilan bog'lanish
@@ -105,6 +108,7 @@ const ContactUs = () => {
                     color: "#aaa",
                     marginBottom: "30px",
                     textAlign: "center",
+                    fontSize: { xs: "body2", sm: "body1" },
                   }}
                 >
                   Iltimos, quyidagi ma'lumotlarni to'ldiring va mijozlarga
@@ -119,6 +123,7 @@ const ContactUs = () => {
                     InputProps={{
                       style: { color: "#fff", backgroundColor: "#2C2C2C" },
                     }}
+                    fullWidth
                   />
 
                   <TextField
@@ -130,6 +135,7 @@ const ContactUs = () => {
                     InputProps={{
                       style: { color: "#fff", backgroundColor: "#2C2C2C" },
                     }}
+                    fullWidth
                   />
 
                   <TextField
@@ -142,6 +148,7 @@ const ContactUs = () => {
                     InputProps={{
                       style: { color: "#fff", backgroundColor: "#2C2C2C" },
                     }}
+                    fullWidth
                   />
                 </Stack>
 

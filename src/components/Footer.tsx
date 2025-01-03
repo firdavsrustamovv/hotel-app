@@ -1,101 +1,137 @@
-import { Box, Typography, TextField, IconButton, Stack } from "@mui/material";
+import { Box, Typography, Stack } from "@mui/material";
 import { Link } from "react-router-dom";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 const Footer = () => {
   return (
     <Box
       sx={{
-        backgroundColor: "#121212",
+        backgroundColor: "#1a1a1a",
         color: "#ffffff",
-        padding: "40px 20px",
+        textAlign: "center",
+        padding: "5px",
       }}
     >
       <Stack
-        direction={{ xs: "column", md: "row" }}
-        spacing={4}
-        justifyContent="space-between"
-        sx={{ marginBottom: "40px" }}
+        spacing={2}
+        alignItems="center"
+        sx={{ marginBottom: { xs: "20px", md: "40px" } }}
       >
-        <Stack spacing={2} sx={{ flex: 1 }}>
-          <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-            Hotel-app
-          </Typography>
-          <Typography sx={{ fontSize: "14px" }}>
-            2024 Uzbekiston
-            <br />
-            Jizzax
-          </Typography>
-        </Stack>
-
-        <Stack
-          direction={{ xs: "column", md: "row" }}
-          spacing={2}
-          justifyContent="space-between"
-          sx={{ flex: 1 }}
+        <Typography variant="h5" sx={{ fontWeight: "bold" }}>
+          Hotel-app
+        </Typography>
+        <Typography
+          sx={{
+            fontSize: "15px",
+            maxWidth: "500px",
+            padding: { xs: "0 10px", md: "0" },
+          }}
         >
-          <Stack spacing={2} sx={{ flex: 1 }}>
-            <Link style={{ fontSize: "14px" }} to={"/"}>
-              Asosiy
-            </Link>
-            <Link style={{ fontSize: "14px" }} to={"rooms"}>
-              Xonalar
-            </Link>
-            <Link style={{ fontSize: "14px" }} to={"/facilities"}>
-              Qulayliklar
-            </Link>
-          </Stack>
-          <Stack spacing={2} sx={{ flex: 1 }}>
-            {/* <Link style={{ fontSize: "14px" }} to={"/offers"}>
-              Takliflarimiz
-            </Link> */}
-            <Link style={{ fontSize: "14px" }} to={"/about"}>
-              Biz haqimizda
-            </Link>
-            <Link style={{ fontSize: "14px" }} to={"/contact"}>
-              Aloqa
-            </Link>
-            <Link style={{ fontSize: "14px" }} to={"/blog"}>
-              Blog
-            </Link>
-          </Stack>
-        </Stack>
-
-        <Stack spacing={2} sx={{ flex: 1 }}>
-          <Box
-            sx={{ display: "flex", alignItems: "center", marginTop: "10px" }}
+          Sizning qulay va zamonaviy dam olishingiz uchun mehmonxona xizmati.
+        </Typography>
+        <Stack
+          direction={{ xs: "column", sm: "row" }}
+          spacing={2}
+          justifyContent="center"
+          sx={{ alignItems: { xs: "center", sm: "flex-start" } }}
+        >
+          <Link
+            style={{
+              fontSize: "15px",
+              color: "#ffffff",
+              textDecoration: "none",
+            }}
+            to={"/"}
           >
-            <TextField
-              variant="standard"
-              placeholder="Email Address"
-              InputProps={{
-                disableUnderline: true,
-                sx: {
-                  color: "#ffffff",
-                  background: "transparent",
-                  borderBottom: "1px solid #ffffff",
-                },
-              }}
-              sx={{ flexGrow: 1, marginRight: "8px" }}
-            />
-            <IconButton>
-              <ArrowForwardIcon sx={{ color: "#ffffff" }} />
-            </IconButton>
-          </Box>
+            Asosiy
+          </Link>
+          <Link
+            style={{
+              fontSize: "15px",
+              color: "#ffffff",
+              textDecoration: "none",
+            }}
+            to={"rooms"}
+          >
+            Xonalar
+          </Link>
+          <Link
+            style={{
+              fontSize: "15px",
+              color: "#ffffff",
+              textDecoration: "none",
+            }}
+            to={"/facilities"}
+          >
+            Qulayliklar
+          </Link>
+          <Link
+            style={{
+              fontSize: "15px",
+              color: "#ffffff",
+              textDecoration: "none",
+            }}
+            to={"/about"}
+          >
+            Biz haqimizda
+          </Link>
+          <Link
+            style={{
+              fontSize: "15px",
+              color: "#ffffff",
+              textDecoration: "none",
+            }}
+            to={"/contact"}
+          >
+            Aloqa
+          </Link>
+          <Link
+            style={{
+              fontSize: "15px",
+              color: "#ffffff",
+              textDecoration: "none",
+            }}
+            to={"/blog"}
+          >
+            Blog
+          </Link>
         </Stack>
       </Stack>
 
       <Box
         sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          marginTop: "40px",
-          fontSize: "12px",
           borderTop: "1px solid #333333",
-          paddingTop: "20px",
+          paddingTop: "10px",
         }}
       >
         <Typography>©2024 Hotel-App. Barcha huquqlar himoyalangan</Typography>
+        <Stack
+          direction={{ xs: "column", sm: "row" }}
+          justifyContent="center"
+          spacing={2}
+          sx={{
+            marginTop: "10px",
+            alignItems: { xs: "center", sm: "flex-start" },
+          }}
+        >
+          <Typography
+            style={{
+              color: "#ffffff",
+              fontSize: "15px",
+              textDecoration: "none",
+            }}
+          >
+            Maxfiylik siyosati
+          </Typography>
+          <Typography
+            style={{
+              color: "#ffffff",
+              fontSize: "15px",
+              textDecoration: "none",
+            }}
+          >
+            Foydalanish shartlari
+          </Typography>
+        </Stack>
       </Box>
     </Box>
   );

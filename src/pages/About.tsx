@@ -23,7 +23,7 @@ const About = () => {
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          height: "450px",
+          height: { xs: "300px", md: "450px" },
           width: "100%",
         }}
       >
@@ -34,7 +34,7 @@ const About = () => {
             justifyContent: "center",
             textAlign: "center",
           }}
-          mt="150px"
+          mt={{ xs: "100px", md: "150px" }}
         >
           <Container maxWidth="md">
             <Typography
@@ -44,6 +44,7 @@ const About = () => {
                 fontWeight: "bold",
                 textShadow: "0 4px 8px rgba(0, 0, 0, 0.6)",
                 mb: 2,
+                fontSize: { xs: "40px", md: "50px" },
               }}
             >
               Biz haqimizda
@@ -54,16 +55,26 @@ const About = () => {
       </Box>
       <Container>
         <Stack
-          mt={"100px"}
-          direction={"row"}
-          alignItems={"center"}
-          justifyContent={"space-between"}
+          mt={{ xs: "50px", md: "100px" }}
+          direction={{ xs: "column", md: "row" }}
+          alignItems="center"
+          justifyContent={{ xs: "center", md: "space-between" }}
+          gap={3}
         >
-          <Typography variant="h5">
+          <Typography
+            variant="h5"
+            sx={{ textAlign: { xs: "center", md: "left" } }}
+          >
             Xalqaro sertifikatlarga ega besh yulduzli mehmonxonalar
           </Typography>
           <Link to={"/rooms"}>
-            <Button variant="contained" sx={{ background: "Black" }}>
+            <Button
+              variant="contained"
+              sx={{
+                background: "Black",
+                alignSelf: { xs: "center", md: "unset" },
+              }}
+            >
               Xona Qidirish
             </Button>
           </Link>
@@ -72,22 +83,31 @@ const About = () => {
       <Box>
         <Stack
           justifyContent={"center"}
-          mt={"100px"}
+          mt={{ xs: "50px", md: "100px" }}
           height={"auto"}
           sx={{ backgroundColor: "black" }}
         >
           <Quality />
         </Stack>
         <Container>
-          <Box mt={"100px"}>
+          <Box mt={{ xs: "50px", md: "100px" }}>
             <Stack>
-              <Typography variant="h3" textAlign={"center"}>
+              <Typography
+                variant="h3"
+                textAlign={"center"}
+                sx={{ fontSize: { xs: "1.5rem", md: "2rem" } }}
+              >
                 Eng qulay joyni topishga yordam beradi
               </Typography>
             </Stack>
           </Box>
-          <Box mt={"50px"} height={"650px"}>
-            <Stack direction={"row"} gap={"10px"}>
+          <Box mt={{ xs: "30px", md: "50px" }}>
+            <Stack
+              direction={{ xs: "column", md: "row" }}
+              gap={"15px"}
+              alignItems="center"
+              justifyContent={"center"}
+            >
               <Stack
                 sx={{
                   "&:hover": {
@@ -101,10 +121,14 @@ const About = () => {
                   alt="aboutUsImg"
                   style={{
                     width: "100%",
+                    maxWidth: "300px",
                     borderRadius: "8px",
                   }}
                 />
-                <Typography textAlign={"center"} fontSize={"20px"}>
+                <Typography
+                  textAlign={"center"}
+                  fontSize={{ xs: "16px", md: "20px" }}
+                >
                   Toshkent,Chimyon
                 </Typography>
               </Stack>
@@ -121,10 +145,14 @@ const About = () => {
                   alt="aboutUsImg"
                   style={{
                     width: "100%",
+                    maxWidth: "300px",
                     borderRadius: "8px",
                   }}
                 />
-                <Typography textAlign={"center"} fontSize={"20px"}>
+                <Typography
+                  textAlign={"center"}
+                  fontSize={{ xs: "16px", md: "20px" }}
+                >
                   Jizzax,Zomin
                 </Typography>
               </Stack>
@@ -141,10 +169,14 @@ const About = () => {
                   alt="aboutUsImg"
                   style={{
                     width: "100%",
+                    maxWidth: "300px",
                     borderRadius: "8px",
                   }}
                 />
-                <Typography textAlign={"center"} fontSize={"20px"}>
+                <Typography
+                  textAlign={"center"}
+                  fontSize={{ xs: "16px", md: "20px" }}
+                >
                   Toshkent,Chorvoq
                 </Typography>
               </Stack>

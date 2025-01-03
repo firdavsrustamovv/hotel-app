@@ -2,8 +2,6 @@ import Header from "../components/Header";
 import { Stack, Box, Container, Typography, Divider } from "@mui/material";
 import blog from "../images/blog.png";
 import golf from "../images/gold.png";
-import imgForBlog from "../images/imgForBlog.png";
-import imgForBlog2 from "../images/imgForBlog2.png";
 import BlogCard from "../components/BlogCard";
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
 import { useEffect, useState, useCallback } from "react";
@@ -11,12 +9,14 @@ import { startLoading, stopLoading } from "../slice/loaderSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import Loader from "../components/Loader";
+
 interface Data {
   id?: number;
   img: string;
   title: string;
   infomation: string;
 }
+
 const SUPABASE_URL = process.env.REACT_APP_SUPABASE_URL as string;
 const SUPABASE_KEY = process.env.REACT_APP_SUPABASE_KEY as string;
 const supabase: SupabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
@@ -39,12 +39,15 @@ const Blog = () => {
       console.error("Fetch error: ", err.message);
     }
   };
+
   useCallback(() => {
     fetchData();
   }, [blogs]);
+
   useEffect(() => {
     fetchData();
   }, []);
+
   return (
     <Box>
       {isLoading && <Loader />}
@@ -64,8 +67,8 @@ const Blog = () => {
             alignItems: "center",
             justifyContent: "center",
             textAlign: "center",
+            mt: { xs: "80px", md: "150px" },
           }}
-          mt="150px"
         >
           <Container maxWidth="md">
             <Typography
@@ -75,6 +78,7 @@ const Blog = () => {
                 fontWeight: "bold",
                 textShadow: "0 4px 8px rgba(0, 0, 0, 0.6)",
                 mb: 2,
+                fontSize: "50px",
               }}
             >
               Blog
@@ -84,18 +88,23 @@ const Blog = () => {
         </Stack>
       </Box>
       <Container>
-        <Box mt={"100px"}>
+        <Box mt={{ xs: "50px", md: "100px" }}>
           <Stack
-            direction={"row"}
-            alignItems={"center"}
-            justifyContent={"space-between"}
-            flexWrap={"wrap"}
-            gap={"20px"}
+            direction={{ xs: "column", sm: "row" }}
+            alignItems="center"
+            justifyContent="space-between"
+            gap="20px"
           >
-            <Typography fontSize={"40px"}>
+            <Typography
+              fontSize={{ xs: "30px", sm: "40px" }}
+              sx={{ textAlign: { xs: "center", sm: "left" } }}
+            >
               Biz haqimizda barcha <br /> yangiliklardan xabardor bo'ling
             </Typography>
-            <Typography fontSize={"20px"}>
+            <Typography
+              fontSize={{ xs: "16px", sm: "20px" }}
+              sx={{ textAlign: { xs: "center", sm: "left" } }}
+            >
               Ob'ektlar, tadbirlar va biz bilan bog'liq yangiliklardan <br />
               xabardor bo'ling biz taqdim etayotgan <br /> promolar, hammasi shu
               yerda
@@ -103,33 +112,32 @@ const Blog = () => {
           </Stack>
           <Divider sx={{ marginTop: "30px" }} />
         </Box>
-        <Box mt={"100px"}>
-          <Stack flexWrap={"wrap"} direction={"row"} gap={"10px"}>
+        <Box mt={{ xs: "50px", md: "100px" }}>
+          <Stack direction={"row"} gap={"10px"} justifyContent="space-between">
             <Box
               sx={{
                 backgroundImage: `url(${golf})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
-                height: "479px",
-                maxWidth: "700px",
+                height: { xs: "250px", sm: "479px" },
                 width: "100%",
                 position: "relative",
               }}
             >
-              <Stack position={"absolute"} top={370} left={40}>
-                <Typography fontSize={"30px"} color="white">
-                  Vebinar tadbiri Yoshlarning rivojlanishi uchun aqliy trening
+              <Stack position={"absolute"} bottom={50} left={20}>
+                <Typography
+                  fontSize={{ xs: "18px", sm: "30px" }}
+                  color="white"
+                  sx={{ textAlign: "center" }}
+                >
+                  Ajoyib golf tadbirlarini o'tqazish uchun maxsus maydonlar
                 </Typography>
               </Stack>
             </Box>
-            <Stack flexWrap={"wrap"} direction={"row"} gap={"10px"}>
-              <img src={imgForBlog} alt="imgForBlog" />
-              <img src={imgForBlog2} alt="imgForBlog2" />
-            </Stack>
           </Stack>
         </Box>
-        <Box mt={"100px"} height={"auto"}>
+        <Box mt={{ xs: "50px", md: "100px" }} height={"auto"}>
           <Stack>
             <BlogCard data={blogs} link="/blog" fontSize="15px" />
           </Stack>
