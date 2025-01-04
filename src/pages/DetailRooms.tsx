@@ -159,11 +159,20 @@ const DetailRooms = () => {
           </Container>
         </Stack>
       </Box>
-      <Box sx={{ padding: "20px", textAlign: "center" }} mt={"50px"}>
-        <Stack direction={"row"} justifyContent={"space-between"} spacing={2}>
+      <Box sx={{ padding: "10px", textAlign: "center" }} mt="50px">
+        <Stack
+          direction="row"
+          justifyContent="center"
+          spacing={2}
+          sx={{
+            flexWrap: "wrap",
+            gap: "10px",
+          }}
+        >
           {[room.img, detailRoom1, detailRoom2].map((imgSrc, index) => (
             <Box
               key={index}
+              alignSelf={"center"}
               sx={{
                 width: "32%",
                 height: "300px",
@@ -177,16 +186,12 @@ const DetailRooms = () => {
                   "& img": {
                     filter: "brightness(70%)",
                   },
-                  "&::after": {
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    color: "white",
-                    fontWeight: "bold",
-                    fontSize: "18px",
-                    textShadow: "0 2px 4px rgba(0, 0, 0, 0.6)",
-                  },
+                },
+                "@media (max-width: 900px)": {
+                  width: "60%",
+                },
+                "@media (max-width: 600px)": {
+                  width: "90%",
                 },
               }}
             >
@@ -205,48 +210,92 @@ const DetailRooms = () => {
           ))}
         </Stack>
 
-        <Typography variant="h3" sx={{ fontWeight: "bold", mt: "50px" }}>
+        <Typography
+          variant="h3"
+          sx={{
+            fontWeight: "bold",
+            mt: "50px",
+            "@media (max-width: 600px)": {
+              fontSize: "1.5rem",
+            },
+          }}
+        >
           {room.title}
         </Typography>
-        <Typography variant="h6">{room.infomation}</Typography>
+        <Typography
+          variant="h6"
+          sx={{
+            "@media (max-width: 600px)": {
+              fontSize: "1rem",
+            },
+          }}
+        >
+          {room.infomation}
+        </Typography>
       </Box>
       <Container>
-        <Box mt={"100px"}>
-          <Stack direction={"row"} justifyContent={"space-between"}>
-            <Stack direction={"column"} gap={"15px"}>
-              <Typography fontWeight={"bold"} variant="h4">
+        <Box mt="100px" sx={{ padding: "20px" }}>
+          <Stack
+            direction="column"
+            justifyContent="space-between"
+            flexWrap="wrap"
+            gap="20px"
+          >
+            <Stack direction="column" gap="15px" sx={{ flex: 1 }}>
+              <Typography
+                fontWeight="bold"
+                variant="h4"
+                sx={{ fontSize: { xs: "1.5rem", md: "2rem" } }}
+              >
                 Ma'lumot
               </Typography>
-              <Typography fontSize={"21px"}>
+              <Typography
+                fontSize="21px"
+                sx={{
+                  fontSize: { xs: "16px", md: "21px" },
+                  lineHeight: "1.5",
+                }}
+              >
                 Ushbu 50,5 m2 maydonda o'zingizni oddiy nafislik bilan o'rab{" "}
-                <br />
-                oling bu sizning mukammal tanlovingiz. Bu xona ham oldida <br />
-                to'g'ridan-to'g'ri to'xtash joyi bilan qulaylik yaratadi <br />
+                oling bu sizning mukammal tanlovingiz. Bu xona ham oldida
+                to'g'ridan-to'g'ri to'xtash joyi bilan qulaylik yaratadi
                 yashashingizni yanada mukammal qiladi Qulay nafis va zamonaviy{" "}
-                <br />
                 dizayndagi xona atmosferasi sizni dam olishga undaydi Hammasi{" "}
-                <br />
                 toza, yorqin oq soyalar bilan yaratilgan bu qulaylik hissini
                 oshiradi.
               </Typography>
             </Stack>
-            <Stack>
+
+            <Stack sx={{ flex: 1, maxWidth: { xs: "100%", md: "100%" } }}>
               <Stack
-                direction={"row"}
-                gap={"100px"}
-                justifyContent={"space-between"}
+                direction="row"
+                justifyContent="space-between"
+                alignItems="center"
+                gap="20px"
               >
-                <Typography fontWeight={"bold"} fontSize={"20px"}>
+                <Typography
+                  fontWeight="bold"
+                  fontSize="20px"
+                  sx={{ fontSize: { xs: "16px", md: "20px" } }}
+                >
                   Bron qilish
                 </Typography>
-                <Typography color="#e8b34a" fontSize={"20px"}>
+                <Typography
+                  color="#e8b34a"
+                  fontSize="20px"
+                  sx={{ fontSize: { xs: "16px", md: "20px" } }}
+                >
                   $500/Kun
                 </Typography>
               </Stack>
-              <Stack mt={"170px"}>
+              <Stack mt={2}>
                 <Button
                   onClick={checkUser}
-                  sx={{ background: "#e8b34a" }}
+                  sx={{
+                    background: "#e8b34a",
+                    fontSize: { xs: "14px", md: "16px" },
+                    padding: { xs: "8px 16px", md: "10px 20px" },
+                  }}
                   variant="contained"
                 >
                   Bron qilish

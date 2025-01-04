@@ -166,10 +166,17 @@ const BookingRoom = () => {
       </Box>
       <Container sx={{ height: "100%" }}>
         <Box mt={"100px"}>
-          <Stack direction={"row"} justifyContent={"space-between"}>
+          <Stack
+            direction={"row"}
+            justifyContent={"space-around"}
+            flexWrap={"wrap"}
+            gap={"30px"}
+          >
             <Typography variant="h4">Bron qilinadigan xona</Typography>
             <Stack>
-              <Box sx={{ width: "500px" }}>
+              <Box
+                sx={{ maxWidth: "550px", width: { xs: "100%", md: "550px" } }}
+              >
                 <Stepper activeStep={step} alternativeLabel>
                   {steps.map((label) => (
                     <Step key={label}>
@@ -184,9 +191,9 @@ const BookingRoom = () => {
         <Box mt={"50px"} height={"auto"}>
           <Stack
             direction={"row"}
-            flexWrap={"wrap"}
-            justifyContent={"space-between"}
+            justifyContent={"center"}
             gap={"50px"}
+            flexWrap={"wrap"}
           >
             <Stack>
               <RoomCard

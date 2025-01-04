@@ -1,4 +1,12 @@
-import { Stack, Typography, Box, Container, Divider } from "@mui/material";
+import {
+  Stack,
+  Typography,
+  Box,
+  Container,
+  Divider,
+  useTheme,
+  useMediaQuery,
+} from "@mui/material";
 import Header from "../components/Header";
 import roomBackground from "../images/room.png";
 import premiumGrandDeluxeRoom from "../images/premiumGrandDeluxeRoom.png";
@@ -9,12 +17,14 @@ import { startLoading, stopLoading } from "../slice/loaderSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import Loader from "../components/Loader";
+
 interface Rooms {
   id: number;
   infomation: string;
   title: string;
   img: string;
 }
+
 const SUPABASE_URL = process.env.REACT_APP_SUPABASE_URL as string;
 const SUPABASE_KEY = process.env.REACT_APP_SUPABASE_KEY as string;
 const supabase: SupabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
@@ -24,6 +34,8 @@ const Rooms = () => {
   const [nextRooms, setNextRooms] = useState<Rooms[]>([]);
   const isLoading = useSelector((state: RootState) => state.loader.isLoading);
   const dispatch = useDispatch();
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const fetchData = async () => {
     try {
@@ -42,6 +54,7 @@ const Rooms = () => {
       console.error("Fetch error: ", err.message);
     }
   };
+
   const fetchNextData = async () => {
     try {
       dispatch(startLoading());
@@ -59,14 +72,17 @@ const Rooms = () => {
       console.error("Fetch error: ", err.message);
     }
   };
+
   useCallback(() => {
     fetchData();
     fetchNextData();
   }, [rooms, nextRooms]);
+
   useEffect(() => {
     fetchData();
     fetchNextData();
   }, []);
+
   return (
     <Box>
       {isLoading && <Loader />}
@@ -86,8 +102,8 @@ const Rooms = () => {
             alignItems: "center",
             justifyContent: "center",
             textAlign: "center",
+            mt: isSmallScreen ? "100px" : "150px",
           }}
-          mt="150px"
         >
           <Container maxWidth="md">
             <Typography
@@ -97,6 +113,7 @@ const Rooms = () => {
                 fontWeight: "bold",
                 textShadow: "0 4px 8px rgba(0, 0, 0, 0.6)",
                 mb: 2,
+                fontSize: "50px",
               }}
             >
               Xonalar
@@ -108,8 +125,13 @@ const Rooms = () => {
 
       <Container>
         <Box>
-          <Stack mt="100px">
-            <Typography sx={{ fontSize: "36px", textAlign: "center" }}>
+          <Stack mt={isSmallScreen ? "50px" : "100px"}>
+            <Typography
+              sx={{
+                fontSize: isSmallScreen ? "24px" : "36px",
+                textAlign: "center",
+              }}
+            >
               Bizning qulay va hamma sharoitlarga <br /> ega xonalarimizda dam
               oling
             </Typography>
@@ -128,16 +150,15 @@ const Rooms = () => {
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           height: "500px",
-
           width: "100%",
           position: "relative",
         }}
       >
         <Container>
-          <Box sx={{ position: "absolute", top: 350 }}>
+          <Box sx={{ position: "absolute", bottom: 40 }}>
             <Stack
               sx={{
-                textAlign: "left",
+                textAlign: isSmallScreen ? "center" : "left",
               }}
             >
               <Typography
@@ -147,6 +168,7 @@ const Rooms = () => {
                   fontWeight: "bold",
                   textShadow: "0 4px 8px rgba(0, 0, 0, 0.6)",
                   mb: 2,
+                  fontSize: isSmallScreen ? "20px" : "32px",
                 }}
               >
                 Premium Grand xonalarimizdan biri
@@ -157,6 +179,7 @@ const Rooms = () => {
                   color: "white",
                   fontWeight: "bold",
                   textShadow: "0 4px 8px rgba(0, 0, 0, 0.6)",
+                  fontSize: isSmallScreen ? "16px" : "24px",
                 }}
               >
                 85 m² 2 yotoqxona 2 hammom 2 Suzish maydoni

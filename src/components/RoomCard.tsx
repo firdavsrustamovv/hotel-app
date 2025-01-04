@@ -1,4 +1,3 @@
-import React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -30,49 +29,80 @@ export default function RoomCard({
   imageUrl,
 }: RoomCardProps) {
   return (
-    <Card sx={{ maxWidth: 400, bgcolor: "background.paper" }}>
+    <Card
+      sx={{
+        maxWidth: 450,
+        width: "100%",
+        bgcolor: "background.paper",
+        "@media (max-width: 600px)": {
+          maxWidth: "100%",
+        },
+      }}
+    >
       <CardMedia
         component="img"
         height="240"
         image={imageUrl}
         alt={title}
-        sx={{ objectFit: "cover" }}
+        sx={{
+          objectFit: "cover",
+          height: { xs: 200, md: 240 },
+        }}
       />
       <CardContent>
-        <Typography variant="h5" component="h2" gutterBottom fontWeight="500">
+        <Typography
+          variant="h5"
+          component="h2"
+          gutterBottom
+          fontWeight="500"
+          sx={{
+            fontSize: { xs: "1.2rem", md: "1.5rem" },
+          }}
+        >
           {title}
         </Typography>
 
-        <Stack direction="row" spacing={2} sx={{ mb: 2 }}>
+        <Stack
+          direction="row"
+          spacing={2}
+          sx={{
+            mb: 2,
+            flexWrap: "wrap",
+            gap: "5px",
+          }}
+        >
           <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
             <AspectRatioIcon fontSize="small" />
-            <Typography variant="body2" color="text.secondary">
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{ fontSize: { xs: "0.9rem", md: "1rem" } }}
+            >
               {size}m²
             </Typography>
           </Box>
 
           <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
             <BedIcon fontSize="small" />
-            <Typography variant="body2" color="text.secondary">
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{ fontSize: { xs: "0.9rem", md: "1rem" } }}
+            >
               {beds} yotoq
             </Typography>
           </Box>
 
           <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
             <BathtubIcon fontSize="small" />
-            <Typography variant="body2" color="text.secondary">
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{ fontSize: { xs: "0.9rem", md: "1rem" } }}
+            >
               {bathrooms} hammom
             </Typography>
           </Box>
-
-          {hasBalcony && (
-            <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
-              <BalconyIcon fontSize="small" />
-              <Typography variant="body2" color="text.secondary">
-                balkon
-              </Typography>
-            </Box>
-          )}
         </Stack>
 
         <Box sx={{ display: "flex", alignItems: "baseline", gap: 0.5 }}>
@@ -81,10 +111,15 @@ export default function RoomCard({
             component="span"
             color="primary"
             fontWeight="600"
+            sx={{ fontSize: { xs: "1rem", md: "1.25rem" } }}
           >
             ${price}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            sx={{ fontSize: { xs: "0.8rem", md: "1rem" } }}
+          >
             / Kun
           </Typography>
         </Box>
