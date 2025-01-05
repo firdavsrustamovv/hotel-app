@@ -234,7 +234,7 @@ const DetailRooms = () => {
         </Typography>
       </Box>
       <Container>
-        <Box mt="100px" sx={{ padding: "20px" }}>
+        <Box mt="50px" sx={{ padding: "20px" }}>
           <Stack
             direction="column"
             justifyContent="space-between"

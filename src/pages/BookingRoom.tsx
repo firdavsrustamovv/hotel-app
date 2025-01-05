@@ -191,9 +191,10 @@ const BookingRoom = () => {
         <Box mt={"50px"} height={"auto"}>
           <Stack
             direction={"row"}
-            justifyContent={"center"}
+            justifyContent={"space-around"}
             gap={"50px"}
             flexWrap={"wrap"}
+            alignItems={"center"}
           >
             <Stack>
               <RoomCard
@@ -285,8 +286,7 @@ const BookingRoom = () => {
                     <Button
                       fullWidth
                       variant="contained"
-                      type="button"
-                      onClick={handleNext}
+                      type="submit"
                       size="large"
                       sx={{
                         mt: 3,
@@ -303,17 +303,21 @@ const BookingRoom = () => {
                   </Card>
                 )}
                 {step === 1 && (
-                  <Paper
+                  <Card
                     elevation={3}
                     sx={{
-                      p: 4,
+                      p: 2,
+                      mb: 4,
                       borderRadius: 2,
-                      marginTop: "-50px",
-                      width: "450px",
-                      maxWidth: "450px",
+                      marginTop: "-40px",
+                      width: {
+                        sm: "100%",
+                        md: "550px",
+                        maxWidth: "550px",
+                      },
                     }}
                   >
-                    <Typography variant="h5" mb={3}>
+                    <Typography variant="h5" mb={3} textAlign="center">
                       Bron qilish ma'lumotlari
                     </Typography>
                     <Stack
@@ -344,7 +348,11 @@ const BookingRoom = () => {
                         }}
                       />
                     </Stack>
-                    <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
+                    <Stack
+                      direction={{ xs: "column", sm: "row" }}
+                      spacing={2}
+                      sx={{ mb: 2 }}
+                    >
                       <FormControl fullWidth>
                         <InputLabel>Umumiy xona</InputLabel>
                         <Select
@@ -377,7 +385,7 @@ const BookingRoom = () => {
                     <TextField
                       fullWidth
                       label="Referral Kod"
-                      {...(register("codeRefferal"), { required: false })}
+                      {...register("codeRefferal")}
                       placeholder="Agar bo'lsa"
                       variant="outlined"
                       sx={{ mt: 2 }}
@@ -405,17 +413,22 @@ const BookingRoom = () => {
                     >
                       Keyingisi
                     </Button>
-                  </Paper>
+                  </Card>
                 )}
+
                 {step === 2 && (
-                  <Paper
+                  <Card
                     elevation={3}
                     sx={{
-                      p: 4,
+                      p: 2,
+                      mb: 4,
                       borderRadius: 2,
-                      marginTop: "-40px",
-                      width: "450px",
-                      maxWidth: "450px",
+                      marginTop: { xs: "-40px", md: "-20px" },
+                      width: {
+                        xs: "100%",
+                        md: "550px",
+                        maxWidth: "550px",
+                      },
                     }}
                   >
                     <Stack direction={"column"} gap={"8px"}>
@@ -443,13 +456,13 @@ const BookingRoom = () => {
                         </Typography>
                       </Stack>
                       <Stack direction={"row"} justifyContent={"space-between"}>
-                        <Typography>Kirish vaqti</Typography>
+                        <Typography>Kirish</Typography>
                         <Typography>
                           {bookingRoom.map((data) => data.checkIn)}
                         </Typography>
                       </Stack>
                       <Stack direction={"row"} justifyContent={"space-between"}>
-                        <Typography>Chiqish vaqti</Typography>
+                        <Typography>Chiqish</Typography>
                         <Typography>
                           {bookingRoom.map((data) => data.checkOut)}
                         </Typography>
@@ -490,16 +503,23 @@ const BookingRoom = () => {
                     >
                       Keyingisi
                     </Button>
-                  </Paper>
+                  </Card>
                 )}
                 {step === 3 && (
                   <Box>
-                    <Stack textAlign={"center"}>
+                    <Stack
+                      textAlign={"center"}
+                      justifyContent={"center"}
+                      width={{ xs: "100%", md: "550px" }}
+                      maxWidth={"550px"}
+                    >
                       <Stack
                         direction={"column"}
                         gap={"20px"}
-                        marginRight={"130px"}
-                        marginTop={"-40px"}
+                        alignItems={"center"}
+                        justifyContent={"center"}
+                        // marginRight={"130px"}
+                        marginTop={"-50px"}
                       >
                         <Typography fontSize={"20px"}>
                           Xaridingiz uchun rahmat
