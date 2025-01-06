@@ -11,7 +11,6 @@ import Footer from "./components/Footer";
 import BookingRoom from "./pages/BookingRoom";
 import SignIn from "./components/sign-in/SignIn";
 import SignUp from "./components/sign-up/SignUp";
-// import { ROUTES } from "./routes";
 import ScrollToTop from "./components/ScrollToTop";
 
 const App = () => {
@@ -39,18 +38,3 @@ const App = () => {
 };
 
 export default App;
-
-{
-  /* {ROUTES.map((route, index) => (
-  <Route key={index} path={route.path} element={route.element}>
-    {route.children &&
-      route.children.map((child, childIndex) => (
-        <Route
-          key={childIndex}
-          path={child.path}
-          element={child.element}
-        />
-      ))}
-  </Route>
-))} */
-}

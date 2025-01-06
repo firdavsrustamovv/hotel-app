@@ -34,16 +34,6 @@ const Card = styled(MuiCard)(({ theme }) => ({
     width: "450px",
   },
 }));
-toast.error("Error message", {
-  className: "toastify",
-  position: "top-right",
-  autoClose: 5000,
-  hideProgressBar: false,
-  closeOnClick: true,
-  pauseOnHover: true,
-  draggable: true,
-  theme: "colored",
-});
 
 const SignUpContainer = styled(Stack)(({ theme }) => ({
   height: "calc((1 - var(--template-frame-height, 0)) * 100dvh)",

@@ -37,6 +37,7 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: { xs: "80%", md: "90%" },
+  height: "auto",
   maxWidth: "800px",
   maxHeight: "80vh",
   overflowY: "auto",
