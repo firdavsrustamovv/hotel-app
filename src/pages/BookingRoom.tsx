@@ -15,7 +15,6 @@ import {
   Select,
   MenuItem,
   Card,
-  Paper,
 } from "@mui/material";
 import roomBackground from "../images/room.png";
 import success from "../images/success-icon-23187.png";
@@ -286,7 +285,11 @@ const BookingRoom = () => {
                     <Button
                       fullWidth
                       variant="contained"
-                      type="submit"
+                      type="button"
+                      onClick={handleSubmit((data) => {
+                        console.log("Form Data:", data);
+                        handleNext();
+                      })}
                       size="large"
                       sx={{
                         mt: 3,
