@@ -48,8 +48,13 @@ const FacilitiesCard: React.FC<CardProps> = ({ data }) => {
               textAlign={{ xs: "center", md: "left" }}
               alignSelf="center"
             >
-              <Typography variant="h4">{item.name}</Typography>
-              <Typography variant="h6" color="text.secondary">
+              <Typography sx={{ fontSize: { xs: "25px", md: "30px" } }}>
+                {item.name}
+              </Typography>
+              <Typography
+                sx={{ fontSize: { xs: "18px", md: "20px" } }}
+                color="text.secondary"
+              >
                 {item.title}
               </Typography>
             </Stack>

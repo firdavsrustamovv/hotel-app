@@ -36,7 +36,8 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 900,
+  width: { xs: "80%", md: "90%" },
+  maxWidth: "800px",
   maxHeight: "80vh",
   overflowY: "auto",
   bgcolor: "background.paper",
@@ -260,8 +261,8 @@ const Header = () => {
                         >
                           <Avatar
                             sx={{
-                              width: 64,
-                              height: 64,
+                              width: { xs: 48, md: 64 },
+                              height: { xs: 48, md: 64 },
                               bgcolor: "primary.main",
                               boxShadow: 2,
                               fontSize: "1.5rem",
@@ -279,7 +280,10 @@ const Header = () => {
                               }}
                             >
                               <PersonIcon color="action" />
-                              <Typography variant="h6" component="h2">
+                              <Typography
+                                sx={{ fontSize: { xs: "17px", md: "20px" } }}
+                                component="h2"
+                              >
                                 {name}
                               </Typography>
                             </Box>
@@ -292,7 +296,13 @@ const Header = () => {
                             >
                               <EmailIcon color="action" />
                               <Typography
-                                variant="body2"
+                                sx={{
+                                  fontSize: {
+                                    xs: "11px",
+                                    sm: "14px",
+                                    md: "16px",
+                                  },
+                                }}
                                 color="text.secondary"
                               >
                                 {email}
@@ -309,7 +319,7 @@ const Header = () => {
                     </Typography>
                   </Stack>
                   <hr />
-                  <Box mt={2}>
+                  <Box>
                     <CardForBookedRoom data={filtredRooms} />
                   </Box>
                 </Box>
