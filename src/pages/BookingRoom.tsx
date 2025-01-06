@@ -286,8 +286,7 @@ const BookingRoom = () => {
                       fullWidth
                       variant="contained"
                       type="button"
-                      onClick={handleSubmit((data) => {
-                        console.log("Form Data:", data);
+                      onClick={handleSubmit(() => {
                         handleNext();
                       })}
                       size="large"
