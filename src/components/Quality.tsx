@@ -17,7 +17,7 @@ const Quality = () => {
                 color="white"
                 sx={{ fontSize: { xs: "25px", md: "30px" } }}
               >
-                Har doim eng yaxshi xizmat va sifatga ega mehmonxonalar
+                Har doim eng yaxshi xizmat va sifatga ega mehmonxona
               </Typography>
               <Divider color="white" sx={{ marginTop: "20px" }} />
               <Stack mt={"20px"}>
@@ -29,7 +29,7 @@ const Quality = () => {
                   readOnly
                 />
                 <Typography color="white" fontSize={"13px"}>
-                  Besh yulduzli mehmonxonalar
+                  Besh yulduzli mehmonxona
                 </Typography>
               </Stack>
             </Stack>

@@ -311,9 +311,8 @@ const DetailRooms = () => {
             </DialogTitle>
             <DialogContent>
               <Typography>
-                Siz bron qilishdan oldin hisob qaydnomasini ro'yxatdan
-                o'tkazishingiz kerak. bo'lardi hozir ro'yxatdan o'tishni
-                yoqtirasizmi?
+                Siz bron qilishdan oldin ro'yxatdan o'tishingiz kerak. Hozir
+                ro'yxatdan o'tishni xohlaysizmi?
               </Typography>
             </DialogContent>
             <DialogActions>

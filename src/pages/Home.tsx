@@ -139,7 +139,7 @@ const Home = () => {
                 fontSize: { xs: "50px", md: "60px" },
               }}
             >
-              Eng qulay joyni topishga yordam beradi
+              O'zingizga qulay bo'lgan xonani toping
             </Typography>
           </Container>
 
@@ -237,7 +237,7 @@ const Home = () => {
             <Typography
               variant="h4"
               sx={{
-                fontSize: { xs: "18px", sm: "24px", md: "40px" },
+                fontSize: { xs: "18px", sm: "24px", md: "38px" },
                 textAlign: { xs: "center", sm: "left" },
                 color: "#191818",
               }}
@@ -252,7 +252,7 @@ const Home = () => {
               }}
               color="#7A7A7A"
             >
-              Eng yaxshi mehmonxonalar bizda
+              Eng yaxshi xonalar bizda
             </Typography>
           </Stack>
         </Box>

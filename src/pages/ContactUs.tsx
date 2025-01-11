@@ -117,7 +117,7 @@ const ContactUs = () => {
                 <Stack spacing={2}>
                   <TextField
                     {...register("name", { required: true })}
-                    label="Full Name"
+                    label="To'liq ism"
                     variant="filled"
                     InputLabelProps={{ style: { color: "#ccc" } }}
                     InputProps={{
@@ -140,7 +140,7 @@ const ContactUs = () => {
 
                   <TextField
                     {...register("message", { required: true })}
-                    label="Message"
+                    label="Xabar"
                     variant="filled"
                     multiline
                     rows={4}
@@ -165,7 +165,7 @@ const ContactUs = () => {
                     "&:hover": { backgroundColor: "#B38E30" },
                   }}
                 >
-                  Send
+                  YUBORISH
                 </Button>
               </Box>
             </Box>
