@@ -256,8 +256,8 @@ const DetailRooms = () => {
                   lineHeight: "1.5",
                 }}
               >
-                Ushbu 50,5 m2 maydonda o'zingizni oddiy nafislik bilan o'rab{" "}
-                oling bu sizning mukammal tanlovingiz. Bu xona ham oldida
+                Ushbu {room.size} m2 maydonda o'zingizni oddiy nafislik bilan
+                o'rab oling bu sizning mukammal tanlovingiz. Bu xona ham oldida
                 to'g'ridan-to'g'ri to'xtash joyi bilan qulaylik yaratadi
                 yashashingizni yanada mukammal qiladi Qulay nafis va zamonaviy{" "}
                 dizayndagi xona atmosferasi sizni dam olishga undaydi Hammasi{" "}
@@ -285,7 +285,7 @@ const DetailRooms = () => {
                   fontSize="20px"
                   sx={{ fontSize: { xs: "16px", md: "20px" } }}
                 >
-                  $500/Kun
+                  {room.price}$
                 </Typography>
               </Stack>
               <Stack mt={2}>

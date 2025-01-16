@@ -61,7 +61,7 @@ const Rooms = () => {
       const { data, error } = await supabase
         .from("roomsForHotel")
         .select("*")
-        .range(3, 5);
+        .range(3, 10);
       dispatch(stopLoading());
       if (error) {
         throw error;
