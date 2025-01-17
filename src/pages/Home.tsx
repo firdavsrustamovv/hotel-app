@@ -277,7 +277,7 @@ const Home = () => {
                   transition: "transform 0.3s, box-shadow 0.3s",
                   "&:hover": {
                     transform: "scale(1.02)",
-                    boxShadow: "0 4px 15px rgba(0, 0, 0, 0.2)",
+                    boxShadow: "0 4px 15px rgba(0, 0, 0, 0.3)",
                   },
                   img: {
                     width: "100%",
