@@ -90,22 +90,13 @@ const BookingRoom = () => {
     dispatch(startLoading());
     const { data } = await supabase
       .from("bookingRoom")
-      .insert([
-        {
-          name: val.name,
-          lastName: val.lastName,
-          email: val.email,
-          phoneNumber: val.phoneNumber,
-          checkIn: val.checkIn,
-          checkOut: val.checkOut,
-          totalRoom: val.totalRoom,
-          totalGuest: val.totalGuest,
-          codeRefferal: val.codeRefferal,
-          room_name: room.title,
-          img: room.img,
-          price: room.price,
-        },
-      ])
+      .insert({
+        ...val,
+        room_name: room.title,
+        img: room.img,
+        price: room.price,
+      })
+
       .select("*");
     dispatch(stopLoading());
     setBookingRoom(data || []);
